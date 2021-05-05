@@ -9,13 +9,29 @@ import subprocess
 import time
 import os
 import pprint
+import winsound
 
 os.chdir(os.getcwd()+"//WinSDR")
 cmd = "PYdump.bat"
 os.system("taskkill /f /im  dump1090.exe")
+pp = pprint.PrettyPrinter(depth=10)
 
 AirplaneDict = {}
-pp = pprint.PrettyPrinter(depth=10)
+LAXList = {}
+LGBList = {}
+CoolAirPlaneList = {
+    'MF8' : 'Weird Military Aircraft',
+    'NASA' : 'NASA Airplane',
+    'OAE' : 'Government Contractor',
+    'N628TS' : 'Elon Musk',
+    'N758PB' : 'Jeff Bezos',
+    'N271DV' : 'Jeff Bezos',
+    'N744VG' : 'Virgin Launcher 747',
+    'N9187' : 'Catalina Delivery',
+    'N9680B' : 'Catalina Delivery',
+    'SLAM' : 'Military Transport?'
+    #,'SWA' : 'Test'
+    }
 
 OverallTimer = 0
 
@@ -39,7 +55,10 @@ while True:
                 SMode = ParseOutput[1]
                 SSqwk = ParseOutput[2]
                 SFlight = ParseOutput[3]
-                SAlt = int(ParseOutput[4])
+                try:
+                    SAlt = int(ParseOutput[4])
+                except:
+                    SAlt = 0
                 SSpd = int(ParseOutput[5])
                 SHdg = int(ParseOutput[6])
                 SLat = float(ParseOutput[7])
@@ -51,27 +70,75 @@ while True:
                 LandingAirport = "-"
                 x, y = SLat, SLong
                 #--------------Long Beach Landing Box--------------
-                y1 , x1 , y2 , x2 = -118.168339,33.669071,-117.997795,33.815526
-                if (x > x1 and x < x2 and y > y1 and y < y2 
-                    and SAlt < 1400 and SAlt > 200
-                    and SHdg < 360 and SHdg > 270):
+                y1 , x1 , y2 , x2 = -118.163238,33.630198,-117.94984,33.815526
+                if (x > x1 and x < x2 and y > y1 and y < y2
+                    and SAlt < 2000 and SAlt > 250
+                    and SHdg < 330 and SHdg > 300):
                     LandingAirport = "LGB"
+                    LGBList.update({SFlight : [LandingAirport,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                else:
+                    try:
+                        LGBList.pop(SFlight)
+                    except:
+                        pass
                 #--------------------------------------------------------
                 #--------------LAX landing box--------------
                 y1 , x1 , y2 , x2 = -118.445989,33.927158,-118.095114,33.995785
-                if (x > x1 and x < x2 and y > y1 and y < y2):
+                if (x > x1 and x < x2 and y > y1 and y < y2
+                    and SHdg < 330 and SHdg > 230):
                     LandingAirport = "LAX"
+                    LAXList.update({SFlight : [LandingAirport,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                else:
+                    try:
+                        LAXList.pop(SFlight)
+                    except:
+                        pass
                 #------------------------------------------
                 AirplaneDict.update({SFlight : [LandingAirport,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
-            if OverallTimer % 100 == 0:
+            if OverallTimer % 250 == 0:
                 print("\033[H\033[J")
-                print("  Flight # ,Altitude,Speed, Heading ,Latitude , Longitude , Unix Time")
-                pp.pprint(AirplaneDict)
+                print("------------------------LGBList------------------------")
+                print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
+                for k, v in LGBList.items():
+                    print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(k, v[1], v[2], v[3], v[4], v[5]))
+                print("")
+                print("")
+                print("------------------------LAXList------------------------")
+                print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
+                for k, v in LAXList.items():
+                    print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(k, v[1], v[2], v[3], v[4], v[5]))
+                print("")
+                print("")
+                print("------------------------Full List------------------------")
+                print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
+                for k, v in AirplaneDict.items():
+                    for coolplane in CoolAirPlaneList:
+                        if k.startswith(coolplane):
+                            print("~~~~~~~~COOL PLANE - "+CoolAirPlaneList[coolplane]+"~~~~~~~~")
+                            winsound.PlaySound('not.mp3', winsound.SND_FILENAME)
+                    print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(k, v[1], v[2], v[3], v[4], v[5]))
+                print("")
+                print("")
                 #Clean up dictionary
                 try:
-                    for key, value in AirplaneDict.items():
-                        if int(time.time()) - value[6] > 60:
+                    CleanUpAirplaneDict = AirplaneDict
+                    for key, value in CleanUpAirplaneDict.items():
+                        if int(time.time()) - value[6] > 10:
                             AirplaneDict.pop(key)
+                except:
+                    pass
+                try:
+                    CleanUpAirplaneDict = LGBList
+                    for key, value in CleanUpAirplaneDict.items():
+                        if int(time.time()) - value[6] > 10:
+                            LGBList.pop(key)
+                except:
+                    pass
+                try:
+                    CleanUpAirplaneDict = LAXList
+                    for key, value in CleanUpAirplaneDict.items():
+                        if int(time.time()) - value[6] > 10:
+                            LAXList.pop(key)
                 except:
                     pass
 
@@ -81,7 +148,6 @@ while True:
         process.terminate()
         os.system("taskkill /f /im  dump1090.exe")
         sys.exit(0)
-        
         
         
         
