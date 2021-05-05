@@ -11,9 +11,12 @@ import os
 import pprint
 import winsound
 
-os.chdir(os.getcwd()+"//WinSDR")
+os.chdir("C:\\Users\\Angus\\Documents\\GitHub\\Python_SDR_Tracking\\WinSDR")
 cmd = "PYdump.bat"
-os.system("taskkill /f /im  dump1090.exe")
+try:
+    os.system("taskkill /f /im  dump1090.exe")
+except:
+    pass
 pp = pprint.PrettyPrinter(depth=10)
 
 AirplaneDict = {}
@@ -29,7 +32,8 @@ CoolAirPlaneList = {
     'N744VG' : 'Virgin Launcher 747',
     'N9187' : 'Catalina Delivery',
     'N9680B' : 'Catalina Delivery',
-    'SLAM' : 'Military Transport?'
+    'SLAM' : 'Military Transport?',
+    'KNIFE' : 'Military Helicopter'
     #,'SWA' : 'Test'
     }
 
@@ -112,6 +116,8 @@ while True:
                 print("------------------------Full List------------------------")
                 print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
                 for k, v in AirplaneDict.items():
+                    if v[2] > 600:
+                        print("~~~~~~~~FAST AIRPLANE~~~~~~~~")
                     for coolplane in CoolAirPlaneList:
                         if k.startswith(coolplane):
                             print("~~~~~~~~COOL PLANE - "+CoolAirPlaneList[coolplane]+"~~~~~~~~")
