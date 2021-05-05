@@ -14,3 +14,4 @@ ADS-B Out works by broadcasting information about an aircraft's GPS location, al
 Radio waves are limited to line of site meaning radar signals cannot travel long distances or penetrate mountains and other solid objects. ADS-B ground stations are smaller and more adaptable than radar towers and can be placed in locations not possible with radar. With ground stations in place throughout the country, even in hard to reach areas, ADS-B provides better visibility regardless of the terrain or other obstacles.
 
 Aircraft operating in most controlled U.S. airspace must be equipped with ADS-B Out.
+![image](https://user-images.githubusercontent.com/5455778/117200839-cb2c9000-ada0-11eb-976f-4e2f79595110.png)
