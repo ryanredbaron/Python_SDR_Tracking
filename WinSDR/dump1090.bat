@@ -1,2 +1,1 @@
-dump1090.exe --interactive --interactive-rows 50
-pause
+dump1090.exe --net --net-http-port 8080 --interactive --interactive-rows 100
