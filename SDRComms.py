@@ -129,12 +129,12 @@ while True:
                 print("------------------------Full List------------------------")
                 print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
                 for k, v in AirplaneDict.items():
-                    if v[2] > 600:
+                    if v[2] > 500:
                         print("~~~~~~~~FAST AIRPLANE~~~~~~~~")
                     for coolplane in CoolAirPlaneList:
                         if k.startswith(coolplane):
                             print("~~~~~~~~COOL PLANE - "+CoolAirPlaneList[coolplane]+"~~~~~~~~")
-                            winsound.PlaySound('not.mp3', winsound.SND_FILENAME)
+                            #PlaySound('not.mp3', winsound.SND_FILENAME)
                     print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format(k, v[1], v[2], v[3], v[4], v[5]))
                 print("")
                 print("")
