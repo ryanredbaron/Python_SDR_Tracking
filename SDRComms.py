@@ -46,7 +46,8 @@ CoolAirPlaneList = {
     'N9187' : 'Catalina Delivery',
     'N9680B' : 'Catalina Delivery',
     'SLAM' : 'Military Transport?',
-    'KNIFE' : 'Military Helicopter'
+    'KNIFE' : 'Military Helicopter',
+    'N140HP' : 'CHP'
     #,'SWA' : 'Test'
     }
 
