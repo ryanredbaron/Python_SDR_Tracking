@@ -109,7 +109,10 @@ var planeObject = {
 			if (this.squawk == 7700) {
 				this.markerColor = "rgb(255, 255, 0)";
 			}
-
+            // Make fast airplanes all red
+            if (this.speed > 550) {
+				this.markerColor = "rgb(255, 0, 0)";
+			}
 			// If we have not overwritten color by now, an extension still could but
 			// just keep on trucking.  :)
 
@@ -176,6 +179,9 @@ var planeObject = {
 			// Is the position valid?
 			if ((data.validposition == 1) && (this.reapable == false)) {
 				this.vPosition = true;
+                if (this.speed > 550){
+                    this.vFast = true;
+                }
 
 				// Detech if the plane has moved
 				changeLat = false;
@@ -201,6 +207,7 @@ var planeObject = {
 				PlanesOnMap++;
 			} else {
 				this.vPosition = false;
+                this.vFast = false;
 			}
 
 			// Do we have a valid track for the plane?

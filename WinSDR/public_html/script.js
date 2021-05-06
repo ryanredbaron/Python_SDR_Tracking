@@ -189,6 +189,7 @@ function initialize() {
               drawCircle(marker, SiteCirclesDistances[i]); // in meters
             }
         }
+        drawSquare();
 	}
 	
 	// These will run after page is complitely loaded
@@ -267,10 +268,9 @@ function refreshSelected() {
 	} else if (selected && selected.squawk == 7700) { // General Emergency
 		html += '&nbsp;<span class="squawk7700">&nbsp;Squawking: General Emergency&nbsp;</span>';
 	} else if (selected && selected.flight != '') {
-		html += '&nbsp;<a href="http://fr24.com/'+selected.flight+'" target="_blank">[FR24]</a>';
-	    html += '&nbsp;<a href="http://www.flightstats.com/go/FlightStatus/flightStatusByFlight.do?';
-        html += 'flightNumber='+selected.flight+'" target="_blank">[FlightStats]</a>';
 	    html += '&nbsp;<a href="http://flightaware.com/live/flight/'+selected.flight+'" target="_blank">[FlightAware]</a>';
+        html += '&nbsp;<a href="https://www.radarbox.com/data/flights/'+selected.flight+'" target="_blank">[RadarBox]</a>';
+        html += '&nbsp;<a href="https://www.google.com/search?q='+selected.flight+'" target="_blank">[Google]</a>';
 	}
 	html += '<td></tr>';
 	
@@ -438,7 +438,11 @@ function refreshTableInfo() {
 			}
 			
 			if (tableplane.vPosition == true) {
-				html += '<tr class="plane_table_row vPosition' + specialStyle + '">';
+                if (tableplane.vFast == true) {
+                    html += '<tr class="plane_table_row vFast' + specialStyle + '">';
+                } else {
+                    html += '<tr class="plane_table_row vPosition' + specialStyle + '">';
+                }
 			} else {
 				html += '<tr class="plane_table_row ' + specialStyle + '">';
 		    }
@@ -627,7 +631,7 @@ function resetMap() {
 	if (SelectedPlane) {
 	    selectPlaneByHex(SelectedPlane);
 	}
-
+    
 	refreshSelected();
 	refreshTableInfo();
 }
@@ -651,8 +655,41 @@ function drawCircle(marker, distance) {
       map: GoogleMap,
       radius: distance, // In meters
       fillOpacity: 0.0,
-      strokeWeight: 1,
+      strokeWeight: 5,
       strokeOpacity: 0.3
     });
     circle.bindTo('center', marker, 'position');
+}
+
+function drawSquare() {
+    const LBCflightPlanCoordinates = [
+        { lat: 33.82357716478447, lng: -118.14731894414362 },
+        { lat: 33.81279747489562, lng: -118.16529180877978},
+        { lat: 33.6290230582111, lng: -117.96283902811683},
+        { lat: 33.654168165214536, lng: -117.92775389789423 },
+        { lat: 33.82357716478447, lng: -118.14731894414362 },
+      ];
+      const LBCflightPath = new google.maps.Polyline({
+        path: LBCflightPlanCoordinates,
+        geodesic: true,
+        strokeColor: "#4287f5",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+      });
+    const LAXflightPlanCoordinates = [
+        { lat: 34.048165478671, lng: -117.84767225849009 },
+        { lat: 33.954082926058376, lng: -118.43367734280551},
+        { lat: 33.92593839284643, lng: -118.42824942244364},
+        { lat: 33.97663883367617, lng: -117.83500933302051},
+        { lat: 34.048165478671, lng: -117.84767225849009 },
+      ];
+      const LAXflightPath = new google.maps.Polyline({
+        path: LAXflightPlanCoordinates,
+        geodesic: true,
+        strokeColor: "#4287f5",
+        strokeOpacity: 1.0,
+        strokeWeight: 2,
+      });
+    LBCflightPath.setMap(GoogleMap);
+    LAXflightPath.setMap(GoogleMap);
 }
