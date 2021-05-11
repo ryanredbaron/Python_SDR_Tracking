@@ -48,7 +48,8 @@ CoolAirPlaneList = {
     'SLAM' : 'Military Transport?',
     'KNIFE' : 'Military Helicopter',
     'N140HP' : 'CHP',
-    'STMPD' : 'Marine Core'
+    'STMPD' : 'Marine Core',
+    'N66W' : 'Med Fly drop'
     #,'SWA' : 'Test'
     }
 
@@ -102,7 +103,7 @@ while True:
                         pass
                 #--------------------------------------------------------
                 #--------------LAX landing box--------------
-                y1 , x1 , y2 , x2 = -118.445989,33.927158,-118.095114,33.995785
+                y1 , x1 , y2 , x2 = -118.4445,33.8982,-117.7501,34.0794
                 if (x > x1 and x < x2 and y > y1 and y < y2
                     and SHdg < 330 and SHdg > 230):
                     LandingAirport = "LAX"
@@ -131,7 +132,7 @@ while True:
                 print("------------------------Full List------------------------")
                 print("{:<10} {:<10} {:<10} {:<10} {:<10} {:<10}".format('FLight #','Alt','Spd','Head','Lat','Long'))
                 for k, v in AirplaneDict.items():
-                    if v[2] > 500:
+                    if v[2] > 600:
                         print("~~~~~~~~FAST AIRPLANE~~~~~~~~")
                     for coolplane in CoolAirPlaneList:
                         if k.startswith(coolplane):

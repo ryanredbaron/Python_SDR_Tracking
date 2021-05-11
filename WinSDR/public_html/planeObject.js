@@ -1,3 +1,20 @@
+var CoolPlanes = [
+  "MF8-Weird Military Aircraft",
+  "NASA-NASA Airplane",
+  "OAE-Government Contractor",
+  "N628TS-Elon Musk",
+  "N758PB-Jeff Bezos",
+  "N271DV-Jeff Bezos",
+  "N744VG-Virgin Launcher 747",
+  "N9187-Catalina Delivery",
+  "N9680B-Catalina Delivery",
+  "SLAM-Military Transport?",
+  "KNIFE-Military Helicopter",
+  "N140HP-CHP",
+  "STMPD-Marine Core",
+  "N66W-Med Fly drop"
+];
+
 var planeObject = {
 	oldlat		: null,
 	oldlon		: null,
@@ -34,7 +51,7 @@ var planeObject = {
 	// When was this last updated?
 	updated		: null,
 	reapable	: false,
-
+    
 	// Appends data to the running track so we can get a visual tail on the plane
 	// Only useful for a long running browser session.
 	funcAddToTrack	: function(){
@@ -179,6 +196,16 @@ var planeObject = {
 			// Is the position valid?
 			if ((data.validposition == 1) && (this.reapable == false)) {
 				this.vPosition = true;
+                                
+                var i = 0;
+                var len = CoolPlanes.length;
+                for (; i < len; i++) {
+                      if ((this.flight).startsWith((CoolPlanes[i]).split("-")[0])){
+                        this.vFast = true;
+                    }
+                }
+               
+                //If the plane is going over speed then make red
                 if (this.speed > 550){
                     this.vFast = true;
                 }

@@ -436,7 +436,7 @@ function refreshTableInfo() {
 			if (tableplane.squawk == 7700) {
 				specialStyle += " squawk7700";
 			}
-			
+            			
 			if (tableplane.vPosition == true) {
                 if (tableplane.vFast == true) {
                     html += '<tr class="plane_table_row vFast' + specialStyle + '">';
@@ -444,7 +444,7 @@ function refreshTableInfo() {
                     html += '<tr class="plane_table_row vPosition' + specialStyle + '">';
                 }
 			} else {
-				html += '<tr class="plane_table_row ' + specialStyle + '">';
+                    html += '<tr class="plane_table_row ' + specialStyle + '">';
 		    }
 		    
 			html += '<td>' + tableplane.icao + '</td>';
@@ -655,8 +655,8 @@ function drawCircle(marker, distance) {
       map: GoogleMap,
       radius: distance, // In meters
       fillOpacity: 0.0,
-      strokeWeight: 5,
-      strokeOpacity: 0.3
+      strokeWeight: 3,
+      strokeOpacity: 0.1
     });
     circle.bindTo('center', marker, 'position');
 }
