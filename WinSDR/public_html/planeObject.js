@@ -8,12 +8,11 @@ var CoolPlanes = [
   "N744VG-Virgin Launcher 747",
   "N9187-Catalina Delivery",
   "N9680B-Catalina Delivery",
-  "SLAM-Military Transport?",
+  "SLAM-Military C17",
   "KNIFE-Military Helicopter",
   "N140HP-CHP",
   "STMPD-Marine Core",
-  "N66W-Med Fly drop",
-  "SWA-Test"
+  "N66W-Med Fly drop"
 ];
 
 var planeObject = {
@@ -259,12 +258,28 @@ var planeObject = {
 				this.marker.setPosition(new google.maps.LatLng(this.latitude, this.longitude));
 				this.marker.setIcon(this.funcGetIcon());
 			} else {
-				this.marker = new google.maps.Marker({
-					position: new google.maps.LatLng(this.latitude, this.longitude),
-					map: GoogleMap,
-					icon: this.funcGetIcon(),
-					visable: true
-				});
+                if (this.vFast == true) {
+                    var i = 0;
+                    var len = CoolPlanes.length;
+                    for (; i < len; i++) {
+                          if ((this.flight).startsWith((CoolPlanes[i]).split("-")[0])){
+                                this.marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(this.latitude, this.longitude),
+                                    map: GoogleMap,
+                                    icon: this.funcGetIcon(),
+                                    label: { color: '#000000', fontWeight: 'bold', fontSize: '20px', text: (CoolPlanes[i]).split("-")[1] },
+                                    visable: true
+                                });
+                            }
+                        }
+                } else{
+                    this.marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(this.latitude, this.longitude),
+                        map: GoogleMap,
+                        icon: this.funcGetIcon(),
+                        visable: true
+                    });
+                }
 
 				// This is so we can match icao address
 				this.marker.icao = this.icao;
