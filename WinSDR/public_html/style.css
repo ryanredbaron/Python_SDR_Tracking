@@ -19,7 +19,7 @@ table#optionsTabs { width: 100%; font-size: small; font-family: monospace; backg
 /*When airplanes have all stats showing, turns row to green*/
 .vPosition  { font-weight: bold; background-color: #d5ffd5; }
 /*Any airplane faster than 550mph*/
-.vFast  { font-weight: bold; background-color: #ff5555; }
+.vFast  { font-weight: bold; background-color: #d9affa; }
 .squawk7500 { font-weight: bold; background-color: #ff5555; }
 .squawk7600 { font-weight: bold; background-color: #00ffff; }
 .squawk7700 { font-weight: bold; background-color: #ffff00; }

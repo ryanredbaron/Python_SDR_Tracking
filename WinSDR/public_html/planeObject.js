@@ -12,7 +12,8 @@ var CoolPlanes = [
   "KNIFE-Military Helicopter",
   "N140HP-CHP",
   "STMPD-Marine Core",
-  "N66W-Med Fly drop"
+  "N66W-Med Fly drop",
+  "SWA-Test"
 ];
 
 var planeObject = {
@@ -40,6 +41,7 @@ var planeObject = {
 	// Vaild...
 	vPosition	: false,
 	vTrack		: false,
+    vFast		: false,
 
 	// GMap Details
 	marker		: null,
@@ -130,6 +132,14 @@ var planeObject = {
             if (this.speed > 550) {
 				this.markerColor = "rgb(255, 0, 0)";
 			}
+            
+            var i = 0;
+            var len = CoolPlanes.length;
+            for (; i < len; i++) {
+                  if ((this.flight).startsWith((CoolPlanes[i]).split("-")[0])){
+                    this.markerColor = "rgb(217, 175, 250)";
+                }
+            }
 			// If we have not overwritten color by now, an extension still could but
 			// just keep on trucking.  :)
 
@@ -234,7 +244,6 @@ var planeObject = {
 				PlanesOnMap++;
 			} else {
 				this.vPosition = false;
-                this.vFast = false;
 			}
 
 			// Do we have a valid track for the plane?

@@ -90,7 +90,7 @@ while True:
                 LandingAirport = "-"
                 x, y = SLat, SLong
                 #--------------Long Beach Landing Box--------------
-                y1 , x1 , y2 , x2 = -118.163238,33.630198,-117.94984,33.815526
+                y1 , x1 , y2 , x2 = -118.180764,33.624896,-117.949277,33.840089
                 if (x > x1 and x < x2 and y > y1 and y < y2
                     and SAlt < 2000 and SAlt > 250
                     and SHdg < 330 and SHdg > 300):
