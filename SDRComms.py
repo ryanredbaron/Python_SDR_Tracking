@@ -16,7 +16,7 @@ if MappingMode == 1:
     #https://towardsdatascience.com/easy-steps-to-plot-geographic-data-on-a-map-python-11217859a2db
     import matplotlib.pyplot as plt
     BBox = (-118.4772, -117.8188, 33.6341, 34.1078)
-    ruh_m = plt.imread('C:\\Users\\Angus\\Documents\\GitHub\\Python_SDR_Tracking\\boundingmap.JPG')
+    ruh_m = plt.imread('C:\\Users\\ryanr\\Documents\\GitHub\\Python_SDR_Tracking\\boundingmap.JPG')
     fig, ax = plt.subplots(figsize = (8,7))
     ax.set_title('Long Beach Map')
     ax.set_xlim(BBox[0],BBox[1])
@@ -24,10 +24,11 @@ if MappingMode == 1:
     ax.imshow(ruh_m, zorder=0, extent = BBox, aspect= 'equal')
     plt.pause(1)
 
-os.chdir("C:\\Users\\Angus\\Documents\\GitHub\\Python_SDR_Tracking\\WinSDR")
+os.chdir("C:\\Users\\ryanr\\Documents\\GitHub\\Python_SDR_Tracking\\WinSDR")
 cmd = "dump1090.bat"
 try:
     os.system("taskkill /f /im  dump1090.exe")
+    print("dump1090.exe running, shutting down")
 except:
     pass
 pp = pprint.PrettyPrinter(depth=10)
@@ -172,7 +173,7 @@ while True:
         process.kill()
         process.terminate()
         os.system("taskkill /f /im  dump1090.exe")
-        sys.exit(0)        
+        sys.exit(0)
         
         
         
