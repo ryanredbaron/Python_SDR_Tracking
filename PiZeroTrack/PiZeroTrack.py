@@ -9,6 +9,7 @@ import sys
 import subprocess
 import time
 import os
+import math
 
 from guizero import App, Drawing
 CurrentLat = 33.792641
@@ -34,8 +35,7 @@ def RTLData():
     
     d.clear()
     d.image(0, 0, r"C:\Users\ryanr\Desktop\test7.png", width=SquareSize, height=SquareSize)
-    d.text((SquareSize/2)-25,(SquareSize/2)-25,"Home",size=12)
-    d.oval((SquareSize/2)-10, (SquareSize/2)-10, (SquareSize/2)+10, (SquareSize/2)+10, color=None, outline=5, outline_color="red")
+    d.oval((SquareSize/2)-10, (SquareSize/2)-10, (SquareSize/2)+10, (SquareSize/2)+10, color=None, outline=2, outline_color="red")
 
     
     Processing = True
@@ -51,6 +51,7 @@ def RTLData():
                 if output.startswith("-----------------------------------"):
                     continue
                 if len(ParseOutput) == 12 and ParseOutput[0] != "(INCLUDING" and ParseOutput[0] != "OF":
+                    SHex = ParseOutput[0]
                     SFlight = ParseOutput[3]
                     try:
                         SAlt = int(ParseOutput[4])
@@ -61,14 +62,21 @@ def RTLData():
                     SLat = float(ParseOutput[7])
                     SLong = float(ParseOutput[8])
 
-                    LandingAirport = "nan"
-                    AirplaneDict.update({SFlight : [LandingAirport,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                    AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                    
                     for k, v in AirplaneDict.items():
                         DisplayLong = (SquareSize/2) + ((CurrentLat - v[4]) * 1000)
                         DisplayLat = (SquareSize/2) - ((CurrentLong - v[5]) * 1000)
-                        d.text(DisplayLat-25,DisplayLong-25,k,size=12)
-                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=5, outline_color="blue")
+                        d.text(DisplayLat-15,DisplayLong-25,k,size=8)
+                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+                        
+                        Radius = v[2]/10
+                        Heading = ((v[3]-90)%360)*(0.017453)
+                        X1 = DisplayLat
+                        Y1 = DisplayLong
+                        X2 = (Radius)*(math.cos(Heading))+DisplayLat
+                        Y2 = (Radius)*(math.sin(Heading))+DisplayLong
+                        d.line(X1,Y1,X2,Y2,color="black",width=2)
                 #Clean up dictionary
                     try:
                         CleanUpAirplaneDict = AirplaneDict
@@ -87,7 +95,6 @@ def RTLData():
     
 
 d = Drawing(a, width=SquareSize, height=SquareSize)
-
-d.repeat(250, RTLData)
+d.repeat(100, RTLData)
 
 a.display()
