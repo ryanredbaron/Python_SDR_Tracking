@@ -43,19 +43,20 @@ def RTLData():
     global process
     
     d.clear()
-    d.image(0, 0, r"C:\Users\ryanr\Desktop\test9.png", height=ScreenHeight, width=ScreenWidth)
+    d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
+    d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
     RadarRing = 1
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     RadarRing = 5
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     RadarRing = 10
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     RadarRing = 15
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     RadarRing = 20
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     RadarRing = 25
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="red")
+    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
 
     Processing = True
     while Processing == True:
@@ -79,35 +80,24 @@ def RTLData():
                     SHdg = int(ParseOutput[6])
                     SLat = float(ParseOutput[7])
                     SLong = float(ParseOutput[8])
-
+                                                    #0    1     2   3     4   5       6
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                    
                     for k, v in AirplaneDict.items():
-                        #set a max lat/long that you want to see and scale from there
-                        #Max lat = Current lat * Miles
-                        #ScaleLat = Airplanelat/MaxLat = % of max
-                        #MaxMiles * ScaleLat
-                        
-                        #(ScreenWidth/2)-((RadarRing*MapRadius)/2)
-                        DisplayLong = ScreenWidth+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                        DisplayLat = ScreenHeight-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
-                        
-                        '''
-                        DisplayLong =  (ScreenHeight/2) + ((CurrentLat - v[4]) * (MapRadius/MilesPerLat))
-                        DisplayLat = (ScreenWidth/2) + ((CurrentLong - v[5]) * (MapRadius/MilesPerLat))
-                        '''
-                        print(DisplayLat)
-                        print(DisplayLong)
-                        print("---------")
-                        d.text(DisplayLat-15,DisplayLong-25,k,size=8)
+                        DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
+                        DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
+
+                        d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
                         d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+                        d.text(DisplayLat-15,DisplayLong+15,"Spd"+str(v[2]),size=8,color="white")
+                        d.text(DisplayLat-15,DisplayLong+20,"Alt"+str(v[1]),size=8,color="white")
                         SpeedRadius = v[2]/10
                         Heading = ((v[3]-90)%360)*(0.017453)
                         X1 = DisplayLat
                         Y1 = DisplayLong
                         X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
                         Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
-                        d.line(X1,Y1,X2,Y2,color="black",width=2)
+                        d.line(X1,Y1,X2,Y2,color="orange",width=2)
                 #Clean up dictionary
                     try:
                         CleanUpAirplaneDict = AirplaneDict
@@ -126,6 +116,7 @@ def RTLData():
     
 
 d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
+d.bg = "black"
 d.repeat(100, RTLData)
 
 a.display()
