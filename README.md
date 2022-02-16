@@ -86,5 +86,7 @@ sudo reboot
 DISPLAY=:0 python3 Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py
 
 cd Desktop/Python_SDR_Tracking;sudo git pull --all;sudo reboot
+
+sudo killall python3
 ```
 
