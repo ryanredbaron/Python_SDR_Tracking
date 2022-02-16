@@ -76,3 +76,15 @@ d.text(10, 650, "this is a some text which goes over the width and is wrapped", 
 
 a.display()
 ```
+
+Trouble Shooting
+```
+cd Desktop
+sudo git clone https://github.com/ryanredbaron/Python_SDR_Tracking
+sudo reboot
+
+DISPLAY=:0 python3 /Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py 
+
+cd Desktop/Python_SDR_Tracking;sudo git pull --all;sudo reboot
+```
+
