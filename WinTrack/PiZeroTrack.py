@@ -29,7 +29,7 @@ SweepLocation = 0
 
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 
-os.chdir("\WinSDR\")
+os.chdir("C:\\Users\\ryanr\\Documents\\GitHub\\Python_SDR_Tracking\\WinSDR")
 cmd = "dump1090.bat"
 try:
     os.system("taskkill /f /im  dump1090.exe")
