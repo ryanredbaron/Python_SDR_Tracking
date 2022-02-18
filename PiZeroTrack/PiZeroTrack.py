@@ -32,7 +32,7 @@ a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "~/Desktop/dump1090/dump1090 --net --interactive"
+cmd = "~/Desktop/dump1090/dump1090"
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
 def RTLData():
@@ -66,57 +66,16 @@ def RTLData():
     while Processing == True:
         try:
             output = ""
-            output = (process.stdout.readline()).decode('ascii')
-            LineSplit = list(filter(None,(output).splitlines()))
+            output = (process.stdout.readline()).decode()
             if output:
-                for EachLine in LineSplit:
-                    ParseOutput = list(EachLine.split(" "))
-                    if ParseOutput[0] == "" and "/" not in r"%r" % ParseOutput[0] and "\\" not in r"%r" % ParseOutput[0] and "/" not in r"%r" % ParseOutput[1] and "\\" not in r"%r" % ParseOutput[1] and "Hex" not in ParseOutput[1] and len(ParseOutput[1]) > 4:
-                        print(ParseOutput)
-                        print("--")
-                        SHex = 0
-                        try:
-                            SFlight = ParseOutput[1]
-                            AirplaneDict[SFlight]
-                        except:
-                            try:
-                                AirplaneDict.update({SFlight : [0,0,0,0,0,0,0]})
-                            except:
-                                SFlight = 0
-                        try:
-                            SAlt = int(ParseOutput[4])
-                            AirplaneDict[SFlight][1] = SAlt
-                        except:
-                            SAlt = 0
-                        try:
-                            SSpd = int(ParseOutput[5])
-                            AirplaneDict[SFlight][2] = SSpd
-                        except:
-                            SSpd = 0
-                        try:
-                            SHdg = int(ParseOutput[6])
-                            AirplaneDict[SFlight][3] = SHdg
-                        except:
-                            SHdg = 0
-                        try:
-                            SLat = float(ParseOutput[7])
-                            AirplaneDict[SFlight][4] = SLat
-                        except:
-                            SLat = 0
-                        try:
-                            SLong = float(ParseOutput[8])
-                            AirplaneDict[SFlight][5] = SLong
-                        except:
-                            SLong = 0
-                        try:
-                            AirplaneDict[SFlight][6] = int(time.time())
-                        except:
-                            pass
-                                                        #0    1     2   3     4   5       6
-                        #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
-                        print(SFlight)
-                        print(AirplaneDict[SFlight])
-                        print("-------------------")
+                data = output.split("\n")
+                for d in data:
+                    line = d.split(",")
+                    if len(line) == 22:
+                        print(line)
+                        print("--------")
+                                  #0    1     2   3     4   5       6
+#AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                     DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
