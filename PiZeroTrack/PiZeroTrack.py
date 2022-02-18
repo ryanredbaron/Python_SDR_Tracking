@@ -31,6 +31,7 @@ AirplaneDict = {}
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
+os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
 cmd = "~/Desktop/dump1090/dump1090 --net --interactive"
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
