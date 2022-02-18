@@ -90,3 +90,82 @@ cd Desktop/Python_SDR_Tracking;sudo git pull --all;sudo reboot
 sudo killall python3
 ```
 
+Use "Rasberry Pi Imager", install OS Lite. Configure SSH and WiFi in tool
+
+
+Usual updates
+```
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install git-core -y
+sudo apt-get install git -y
+sudo apt-get install cmake -y
+sudo apt-get install libusb-1.0-0-dev -y
+sudo apt-get install build-essentia -y
+sudo apt-get install libncurses5-dev -y
+sudo apt-get update && sudo apt-get upgrade -y
+```
+
+
+RTL USB driver install
+```
+git clone git://git.osmocom.org/rtl-sdr.git
+cd rtl-sdr
+mkdir build
+cd build
+cmake ../ -DINSTALL_UDEV_RULES=ON
+make
+sudo make install
+sudo ldconfig
+```
+
+Set permissions
+```
+cd ~
+sudo cp ./rtl-sdr/rtl-sdr.rules /etc/udev/rules.d/
+sudo reboot
+```
+
+
+Test 
+```
+rtl_test
+```
+
+
+Install Dump1090
+```
+cd Desktop
+sudo git clone https://github.com/flightaware/dump1090
+cd dump1090
+sudo make
+```
+
+
+Blacklist so OS doesn't take control
+```
+cd /etc/modprobe.d
+sudo nano no-rtl.conf
+```
+
+
+Add these lines
+```
+blacklist dvb_usb_rtl28xxu
+blacklist rtl2832
+blacklist rtl2830
+```
+
+
+Reboot
+```
+sudo reboot
+```
+
+
+Run the program
+```
+cd dump1090
+./dump1090 --interactive
+./dump1090 --interactive --net
+```
+
