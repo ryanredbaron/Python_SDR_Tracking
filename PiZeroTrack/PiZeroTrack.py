@@ -67,78 +67,52 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            NewLine = list(filter(None, output.splitlines()))
-            
-            for EachLine in NewLine:
-                ParseOutput = list(EachLine.split(" "))
-                if output:
-                    print(ParseOutput)
-                    print("!!!!!")
-                    print(ParseOutput.count())
-                    print("-------------------------------------------------------")
-                    DoNotPass = 0
+            ParseOutput = list(filter(None, output.split(" ")))
+            if output:
+                if output.startswith("Hex"):
+                    continue
+                if output.startswith("-----------------------------------"):
+                    continue
+                if len(ParseOutput) == 12 and ParseOutput[0] != "(INCLUDING" and ParseOutput[0] != "OF":
+                    SHex = ParseOutput[0]
+                    SFlight = ParseOutput[3]
                     try:
-                        if ParseOutput[8] > -140 and ParseOutput[8] < -100:
-                            DoNotPass = 1
+                        SAlt = int(ParseOutput[4])
                     except:
-                        DoNotPass = 1
-                    if DoNotPass == 0:
-                        try:
-                            SHex = ParseOutput[0]
-                        except:
-                            SHex = "0"
-                        try:
-                            SFlight = ParseOutput[3]
-                        except:
-                            SFlight = "0"
-                        try:
-                            SAlt = int(ParseOutput[4])
-                        except:
-                            SAlt = 0
-                        try:
-                            SSpd = int(ParseOutput[5])
-                        except:
-                            SSpd = 0
-                        try:
-                            SHdg = int(ParseOutput[6])
-                        except:
-                            SHdg = 0
-                        try:
-                            SLat = float(ParseOutput[7])
-                        except:
-                            SLat = 0
-                        try:
-                            SLong = float(ParseOutput[8])
-                        except:
-                            SLong = 0
-                                                        #0    1     2   3     4   5       6
-                        AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
-                        print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
-                       
-                        for k, v in AirplaneDict.items():
-                            DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                            DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
-                            d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
-    
-                            SpeedRadius = v[2]/10
-                            Heading = ((v[3]-90)%360)*(0.017453)
-                            X1 = DisplayLat
-                            Y1 = DisplayLong
-                            X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
-                            Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
-                            d.line(X1,Y1,X2,Y2,color="orange",width=2)
-                            
-                            d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
-                            d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
-                            d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
-                        try:
-                            CleanUpAirplaneDict = AirplaneDict
-                            for key, value in CleanUpAirplaneDict.items():
-                                if int(time.time()) - value[6] > 10:
-                                    AirplaneDict.pop(key)
-                        except:
-                            pass
-                        Processing = False
+                        SAlt = 0
+                    SSpd = int(ParseOutput[5])
+                    SHdg = int(ParseOutput[6])
+                    SLat = float(ParseOutput[7])
+                    SLong = float(ParseOutput[8])
+                                                    #0    1     2   3     4   5       6
+                    AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                    print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
+                   
+                    for k, v in AirplaneDict.items():
+                        DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
+                        DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
+                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+
+                        SpeedRadius = v[2]/10
+                        Heading = ((v[3]-90)%360)*(0.017453)
+                        X1 = DisplayLat
+                        Y1 = DisplayLong
+                        X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
+                        Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
+                        d.line(X1,Y1,X2,Y2,color="orange",width=2)
+                        
+                        d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
+                        d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
+                        d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
+                #Clean up dictionary
+                    try:
+                        CleanUpAirplaneDict = AirplaneDict
+                        for key, value in CleanUpAirplaneDict.items():
+                            if int(time.time()) - value[6] > 10:
+                                AirplaneDict.pop(key)
+                    except:
+                        pass
+                    Processing = False
         except KeyboardInterrupt:
             print('Shutting Down')
             process.kill()
