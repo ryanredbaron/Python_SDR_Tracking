@@ -71,7 +71,7 @@ def RTLData():
             if output:
                 print(len(ParseOutput))
                 print("-------")
-                if len(ParseOutput) >> 10:
+                if len(ParseOutput) > 10:
                     print(ParseOutput)
                     print("!!!!!!!!!!!!!")
                     try:
