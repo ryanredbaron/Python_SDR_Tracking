@@ -72,7 +72,7 @@ def RTLData():
                 data = output.split("\n")
                 #print(data)
                 for d in data:
-                    line = d.split("     ")
+                    line = d.split(" ")
                     print(line)
                     print("----")
                     len(line)
