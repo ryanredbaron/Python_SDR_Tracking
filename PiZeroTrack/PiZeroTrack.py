@@ -69,7 +69,7 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            ansi_escape3 = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]', flags=re.IGNORECASE)
+            ansi_escape3 = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
             output = ansi_escape3.sub('', output)
             if output:
                 data = output.split("\n")
