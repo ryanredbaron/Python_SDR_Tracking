@@ -79,7 +79,7 @@ def RTLData():
                             AirplaneDict[SFlight]
                         except:
                             try:
-                                AirplaneDict.update({SFlight : [""]})
+                                AirplaneDict.update({SFlight : ["","","","","","","","","","",""]})
                             except:
                                 SFlight = 0
                         try:
