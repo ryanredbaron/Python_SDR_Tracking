@@ -68,8 +68,6 @@ def RTLData():
             output = ""
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
-            print(ParseOutput)
-            print("----------------")
             if output:
                 DoNotPass = 0
                 try:
