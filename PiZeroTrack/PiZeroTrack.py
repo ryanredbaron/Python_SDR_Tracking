@@ -8,6 +8,7 @@ Created on Sun Feb 13 15:40:43 2022
 import sys
 import subprocess
 import time
+import os
 import math
 
 from guizero import App, Drawing
@@ -15,7 +16,7 @@ from guizero import App, Drawing
 CurrentLat = 33.792641
 CurrentLong = -118.115471
 
-ScreenHeight = 640
+ScreenHeight = 600
 ScreenWidth = 480
 
 MiddleHeight = ScreenHeight/2
@@ -64,12 +65,10 @@ def RTLData():
 
     Processing = True
     while Processing == True:
-        print(1)
         try:
             output = ""
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
-            print(2)
             if output:
                 if output.startswith("Hex"):
                     continue
@@ -82,22 +81,10 @@ def RTLData():
                         SAlt = int(ParseOutput[4])
                     except:
                         SAlt = 0
-                    try:
-                        SSpd = int(ParseOutput[5])
-                    except:
-                        SSpd = 0
-                    try:
-                        SHdg = int(ParseOutput[6])
-                    except:
-                        SHdg = 0
-                    try:
-                        SLat = float(ParseOutput[7])
-                    except:
-                        SLat = 0
-                    try:
-                        SLong = float(ParseOutput[8])
-                    except:
-                        SLong = 0
+                    SSpd = int(ParseOutput[5])
+                    SHdg = int(ParseOutput[6])
+                    SLat = float(ParseOutput[7])
+                    SLong = float(ParseOutput[8])
                                                     #0    1     2   3     4   5       6
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                    
@@ -127,7 +114,11 @@ def RTLData():
                         pass
                     Processing = False
         except KeyboardInterrupt:
-            pass
+            print('Shutting Down')
+            process.kill()
+            process.terminate()
+            os.system("taskkill /f /im  dump1090.exe")
+            sys.exit(0)
     
 
 d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
