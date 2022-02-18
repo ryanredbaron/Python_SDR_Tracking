@@ -10,6 +10,7 @@ import subprocess
 import time
 import os
 import math
+import re
 
 from guizero import App, Drawing
 
@@ -67,7 +68,9 @@ def RTLData():
     while Processing == True:
         try:
             output = ""
-            output = ((process.stdout.readline()).decode('UTF-8'))
+            output = (process.stdout.readline()).decode()
+            ansi_escape3 = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]', flags=re.IGNORECASE)
+            output = ansi_escape3.sub('', output)
             if output:
                 data = output.split("\n")
                 #print(data)
