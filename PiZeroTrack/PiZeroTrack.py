@@ -67,7 +67,7 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            LineSplit = list((filter(None,output.splitlines())).enconde('ascii', errors='ignore'))
+            LineSplit = list(filter(None,(output.enconde('ascii', errors='ignore')).splitlines()))
             if output:
                 for EachLine in LineSplit:
                     print(EachLine)
