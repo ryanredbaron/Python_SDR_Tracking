@@ -71,7 +71,7 @@ def RTLData():
             if output:
                 for EachLine in LineSplit:
                     ParseOutput = list(EachLine.split(" "))
-                    if ParseOutput[0] == "" and "/" not in ParseOutput[0]:
+                    if ParseOutput[0] == "" and "/" not in ParseOutput[0] and "/" not in ParseOutput[1]:
                         print(ParseOutput)
                         print("--------------------")
                         try:SHex = ParseOutput[0]
