@@ -16,7 +16,7 @@ from guizero import App, Drawing
 CurrentLat = 33.792641
 CurrentLong = -118.115471
 
-ScreenHeight = 600
+ScreenHeight = 640
 ScreenWidth = 480
 
 MiddleHeight = ScreenHeight/2
