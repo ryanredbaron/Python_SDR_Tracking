@@ -129,7 +129,6 @@ def RTLData():
             print('Shutting Down')
             process.kill()
             process.terminate()
-            os.system("taskkill /f /im  dump1090.exe")
             sys.exit(0)
     
 
