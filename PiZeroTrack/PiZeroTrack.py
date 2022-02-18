@@ -71,7 +71,7 @@ def RTLData():
             if output:
                 for EachLine in LineSplit:
                     ParseOutput = list(EachLine.split(" "))
-                    if ParseOutput[0] == "" and "/" not in r"%r" % ParseOutput[0] and "\\" not in r"%r" % ParseOutput[0] and "/" not in r"%r" % ParseOutput[1] and "\\" not in r"%r" % ParseOutput[1] and "Hex" not in ParseOutput[1]:
+                    if ParseOutput[0] == "" and "/" not in r"%r" % ParseOutput[0] and "\\" not in r"%r" % ParseOutput[0] and "/" not in r"%r" % ParseOutput[1] and "\\" not in r"%r" % ParseOutput[1] and "Hex" not in ParseOutput[1] and len(ParseOutput[1]) > 4:
                         SHex = 0
                         try:
                             SFlight = ParseOutput[1]
