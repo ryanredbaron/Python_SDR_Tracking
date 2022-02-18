@@ -67,7 +67,7 @@ def RTLData():
     while Processing == True:
         try:
             output = ""
-            output = ((process.stdout.readline()).decode()).strip("\n")
+            output = ((process.stdout.readline()).decode()).encode('ascii', errors='ignore')
             if output:
                 data = output.split("\n")
                 #print(data)
