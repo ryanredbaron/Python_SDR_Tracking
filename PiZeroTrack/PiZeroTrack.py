@@ -72,6 +72,8 @@ def RTLData():
                 for EachLine in LineSplit:
                     ParseOutput = list(EachLine.split(" "))
                     if ParseOutput[0] == "" and "/" not in r"%r" % ParseOutput[0] and "\\" not in r"%r" % ParseOutput[0] and "/" not in r"%r" % ParseOutput[1] and "\\" not in r"%r" % ParseOutput[1] and "Hex" not in ParseOutput[1] and len(ParseOutput[1]) > 4:
+                        print(ParseOutput)
+                        print("--")
                         SHex = 0
                         try:
                             SFlight = ParseOutput[1]
@@ -111,9 +113,9 @@ def RTLData():
                        
                 for k, v in AirplaneDict.items():
                     print(k)
-                    print("--")
+                    print("-------")
                     print(v)
-                    print("--------------------")
+                    print("-------------------------------")
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                     DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
                     d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
