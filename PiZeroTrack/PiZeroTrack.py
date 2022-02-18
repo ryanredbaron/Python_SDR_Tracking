@@ -69,7 +69,8 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
-                if len(ParseOutput) >> 6:
+                if len(ParseOutput) >> 7:
+                    print(ParseOutput)
                     try:
                         SHex = ParseOutput[0]
                     except:
