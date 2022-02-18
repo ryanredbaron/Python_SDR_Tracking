@@ -85,29 +85,33 @@ def RTLData():
                                 SFlight = 0
                         try:
                             SAlt = int(ParseOutput[4])
-                            AirplaneDict[SFlight][4] = SAlt
+                            AirplaneDict[SFlight][1] = SAlt
                         except:
                             SAlt = 0
                         try:
                             SSpd = int(ParseOutput[5])
-                            AirplaneDict[SFlight][5] = SSpd
+                            AirplaneDict[SFlight][2] = SSpd
                         except:
                             SSpd = 0
                         try:
                             SHdg = int(ParseOutput[6])
-                            AirplaneDict[SFlight][6] = SHdg
+                            AirplaneDict[SFlight][3] = SHdg
                         except:
                             SHdg = 0
                         try:
                             SLat = float(ParseOutput[7])
-                            AirplaneDict[SFlight][7] = SLat
+                            AirplaneDict[SFlight][4] = SLat
                         except:
                             SLat = 0
                         try:
                             SLong = float(ParseOutput[8])
-                            AirplaneDict[SFlight][8] = SLong
+                            AirplaneDict[SFlight][5] = SLong
                         except:
                             SLong = 0
+                        try:
+                            AirplaneDict[SFlight][6] = int(time.time())
+                        except:
+                            pass
                                                         #0    1     2   3     4   5       6
                         #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                        
