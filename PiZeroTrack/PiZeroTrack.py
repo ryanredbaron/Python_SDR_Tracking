@@ -70,8 +70,6 @@ def RTLData():
             LineSplit = list(filter(None,(output).splitlines()))
             if output:
                 for EachLine in LineSplit:
-                    print(EachLine)
-                    print("!!!!!!")
                     ParseOutput = list(EachLine.split(" "))
                     if ParseOutput[0] == "" and '/' not in ParseOutput[0] and '/' not in ParseOutput[1]:
                         print(ParseOutput)
