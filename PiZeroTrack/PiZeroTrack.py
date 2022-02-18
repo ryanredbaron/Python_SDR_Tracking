@@ -93,7 +93,7 @@ def RTLData():
                         if "long" in SingleItems:
                             print(SingleItems)
                     print("------")
-                    print(SingleItems)
+                    print(CreatedList)
                     print("----------------")
                     CreatedList = []
                 else:
