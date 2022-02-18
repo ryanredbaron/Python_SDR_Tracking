@@ -73,7 +73,7 @@ def RTLData():
                 try:
                     print(ParseOutput[8])
                     if ParseOutput[8] < -140 or ParseOutput[8] > -100:
-                        ParseOutput[200]
+                        sys.exit(1)
                 except:
                     DoNotPass = 1
                 if DoNotPass == 0:
