@@ -74,18 +74,35 @@ def RTLData():
                     if ParseOutput[0] == "" and "/" not in r"%r" % ParseOutput[0] and "\\" not in r"%r" % ParseOutput[0] and "/" not in r"%r" % ParseOutput[1] and "\\" not in r"%r" % ParseOutput[1] and "Hex" not in ParseOutput[1]:
                         print(ParseOutput)
                         SHex = 0
-                        try:SFlight = ParseOutput[1]
-                        except:SFlight = 0
-                        try:SAlt = int(ParseOutput[4])
-                        except:SAlt = 0
-                        try:SSpd = int(ParseOutput[5])
-                        except:SSpd = 0
-                        try:SHdg = int(ParseOutput[6])
-                        except:SHdg = 0
-                        try:SLat = float(ParseOutput[7])
-                        except:SLat = 0
-                        try:SLong = float(ParseOutput[8])
-                        except:SLong = 0
+                        try:
+                            SFlight = ParseOutput[1]
+                        except:
+                            SFlight = 0
+                        try:
+                            SAlt = int(ParseOutput[4])
+                            AirplaneDict(SFlight)[4] = SAlt
+                        except:
+                            SAlt = 0
+                        try:
+                            SSpd = int(ParseOutput[5])
+                            AirplaneDict(SFlight)[5] = SSpd
+                        except:
+                            SSpd = 0
+                        try:
+                            SHdg = int(ParseOutput[6])
+                            AirplaneDict(SFlight)[6] = SHdg
+                        except:
+                            SHdg = 0
+                        try:
+                            SLat = float(ParseOutput[7])
+                            AirplaneDict(SFlight)[7] = SLat
+                        except:
+                            SLat = 0
+                        try:
+                            SLong = float(ParseOutput[8])
+                            AirplaneDict(SFlight)[8] = SLong
+                        except:
+                            SLong = 0
                                                         #0    1     2   3     4   5       6
                         AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                         print({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
