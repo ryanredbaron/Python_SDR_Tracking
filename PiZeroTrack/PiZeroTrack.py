@@ -29,6 +29,8 @@ MilesPerLat = 0.0145054945054945
 SweepLocation = 0
 AirplaneDict = {}
 
+CreatedList = []
+
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
@@ -41,6 +43,7 @@ def RTLData():
     global process
     global SweepLocation
     global d
+    global CreatedList
     
     d.clear()
     d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
@@ -72,7 +75,7 @@ def RTLData():
             if output:
                 data = list(output.split("\n"))
                 if data == ['', '']:
-                    CreatedList = ""
+                    CreatedList = []
                 for List in data:
                     if List != "":
                         CreatedList.append(","+List)
