@@ -79,9 +79,13 @@ def RTLData():
                         if List != "":
                             CreatedList.append(List)
                 else:
+                    PacketReady = 1
+                    CreatedList = []
+                if PacketReady == 1:
                     print(CreatedList)
                     print("-------------")
-                    CreatedList = []
+                else:
+                    PacketReady = 0
                     
                                   #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
