@@ -72,6 +72,7 @@ def RTLData():
                 for EachLine in LineSplit:
                     ParseOutput = list(EachLine.split(" "))
                     print(ParseOutput)
+                    print("---------------")
                     try:SHex = ParseOutput[0]
                     except:SHex = 0
                     
