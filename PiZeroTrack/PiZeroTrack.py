@@ -81,11 +81,11 @@ def RTLData():
                             CreatedList.append(List)
                 else:
                     PacketReady = 1
-                    CreatedList = []
                     
                 if PacketReady == 1:
                     print(CreatedList)
                     print("-------------")
+                    CreatedList = []
                 else:
                     PacketReady = 0
                     
