@@ -39,6 +39,7 @@ def RTLData():
     global AirplaneDict
     global process
     global SweepLocation
+    global d
     
     d.clear()
     d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
@@ -75,7 +76,7 @@ def RTLData():
                         print(line)
                         print("--------")
                                   #0    1     2   3     4   5       6
-#AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                                  #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                     DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
