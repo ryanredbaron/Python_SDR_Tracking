@@ -70,9 +70,9 @@ def RTLData():
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
                 print(ParseOutput)
-                print(ParseOutput.count(','))
+                print(len(ParseOutput))
                 print("----")
-                if ParseOutput.count(',') == 6:
+                if len(ParseOutput) == 6:
                     try:
                         SHex = ParseOutput[0]
                     except:
