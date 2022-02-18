@@ -64,18 +64,6 @@ d.text(10, 650, "this is a some text which goes over the width and is wrapped", 
 a.display()
 ```
 
-Trouble Shooting
-```
-cd Desktop
-sudo git clone https://github.com/ryanredbaron/Python_SDR_Tracking
-sudo reboot
-
-DISPLAY=:0 python3 Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py
-
-cd Desktop/Python_SDR_Tracking;sudo git pull --all;sudo reboot
-
-sudo killall python3
-```
 
 Use "Rasberry Pi Imager", install OS Lite. Configure SSH and WiFi in tool
 
@@ -157,13 +145,18 @@ cd dump1090
 ./dump1090 --interactive --net
 ```
 
-Stupid fixes that should be patched
+
+Trouble Shooting
 ```
-$ git fetch --all
-Fetching origin
+DISPLAY=:0 python3 ~/Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py
 
-$ git reset --hard 455896e
-HEAD is now at 455896e Fix broken 32-bit x86 test that broke builds on non-x86
+~/Desktop/dump1090/dump1090 --net --interactive
 
-$ make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
+cd ~
+cd ~/Desktop/
+sudo git clone https://github.com/ryanredbaron/Python_SDR_Tracking
+
+cd ~/Desktop/Python_SDR_Tracking/;sudo git pull --all
+
+sudo killall python3
 ```
