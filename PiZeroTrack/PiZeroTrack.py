@@ -77,6 +77,7 @@ def RTLData():
                     DoNotPass = 1
                 if DoNotPass == 0:
                     print(ParseOutput)
+                    print(output)
                     try:
                         SHex = ParseOutput[0]
                     except:
