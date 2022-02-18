@@ -71,10 +71,11 @@ def RTLData():
             if output:
                 DoNotPass = 0
                 try:
-                    ParseOutput[8] < -50
+                    if ParseOutput[8] > -140 or ParseOutput[8] > -100 :
+                        pass
                 except:
                     DoNotPass = 1
-                if ParseOutput[8] < -50 and DoNotPass == 0:
+                if DoNotPass == 0:
                     try:
                         SHex = ParseOutput[0]
                     except:
