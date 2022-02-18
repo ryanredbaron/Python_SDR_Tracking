@@ -70,6 +70,12 @@ def RTLData():
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
                 print(output[0])
+                print("------")
+                print(output[1])
+                print("------")
+                print(output[2])
+                print("------")
+                print(output[3])
                 print("-------------------------------------------------------")
                 DoNotPass = 0
                 try:
