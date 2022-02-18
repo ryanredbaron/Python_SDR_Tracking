@@ -68,7 +68,7 @@ def RTLData():
     while Processing == True:
         try:
             output = ""
-            output = process.stdout.readline()
+            output = (process.stdout.readline()).read().decode('utf-8')
             ansi_escape3 = re.compile(r'\x1b[^m]*m')
             output = ansi_escape3.sub('', output)
             if output:
