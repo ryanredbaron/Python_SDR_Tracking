@@ -81,10 +81,22 @@ def RTLData():
                         SAlt = int(ParseOutput[4])
                     except:
                         SAlt = 0
-                    SSpd = int(ParseOutput[5])
-                    SHdg = int(ParseOutput[6])
-                    SLat = float(ParseOutput[7])
-                    SLong = float(ParseOutput[8])
+                    try:
+                        SSpd = int(ParseOutput[5])
+                    except:
+                        SSpd = 0
+                    try:
+                        SHdg = int(ParseOutput[6])
+                    except:
+                        SHdg = 0
+                    try:
+                        SLat = float(ParseOutput[7])
+                    except:
+                        SLat = 0
+                    try:
+                        SLong = float(ParseOutput[8])
+                    except:
+                        SLong = 0
                                                     #0    1     2   3     4   5       6
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                    
