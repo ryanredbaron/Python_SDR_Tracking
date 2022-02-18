@@ -69,6 +69,9 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
+                print((ParseOutput))
+                print(len(ParseOutput))
+                print("-------")
                 if len(ParseOutput) >> 7:
                     print(ParseOutput)
                     try:
