@@ -71,14 +71,7 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             if output:
                 data = output.split("\n")
-                #print(data)
-                for d in data:
-                    line = d.split("  ")
-                    if line != "" and len(line) > 0:
-                        print(line)
-                        print("----")
-                        print(len(line))
-                        print("-------------------")
+                print(data)
                 
                                   #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
