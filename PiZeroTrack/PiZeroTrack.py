@@ -71,31 +71,26 @@ def RTLData():
             if output:
                 for EachLine in LineSplit:
                     ParseOutput = list(EachLine.split(" "))
-                    print(ParseOutput)
-                    print("---------------")
-                    try:SHex = ParseOutput[0]
-                    except:SHex = 0
-                    
-                    try:SFlight = ParseOutput[3]
-                    except:SFlight = 0
-                    
-                    try:SAlt = int(ParseOutput[4])
-                    except:SAlt = 0
-                    
-                    try:SSpd = int(ParseOutput[5])
-                    except:SSpd = 0
-                    
-                    try:SHdg = int(ParseOutput[6])
-                    except:SHdg = 0
-                    
-                    try:SLat = float(ParseOutput[7])
-                    except:SLat = 0
-                    
-                    try:SLong = float(ParseOutput[8])
-                    except:SLong = 0
-                                                    #0    1     2   3     4   5       6
-                    AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
-                    #print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
+                    if ParseOutput == "":
+                        print(ParseOutput)
+                        print("---------------")
+                        try:SHex = ParseOutput[0]
+                        except:SHex = 0
+                        try:SFlight = ParseOutput[3]
+                        except:SFlight = 0
+                        try:SAlt = int(ParseOutput[4])
+                        except:SAlt = 0     
+                        try:SSpd = int(ParseOutput[5])
+                        except:SSpd = 0
+                        try:SHdg = int(ParseOutput[6])
+                        except:SHdg = 0
+                        try:SLat = float(ParseOutput[7])
+                        except:SLat = 0
+                        try:SLong = float(ParseOutput[8])
+                        except:SLong = 0
+                                                        #0    1     2   3     4   5       6
+                        AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                        #print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
                        
                 for k, v in AirplaneDict.items():
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
