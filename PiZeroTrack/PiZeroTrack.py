@@ -68,7 +68,7 @@ def RTLData():
             output = ""
             output = (process.stdout.readline()).decode()
             NewLine = list(filter(None, output.splitlines()))
-            ParseOutput = list(filter(None, NewLine.split(" ")))
+            ParseOutput = list(NewLine.split(" "))
             if output:
                 print(ParseOutput)
                 print("-------------------------------------------------------")
@@ -127,7 +127,6 @@ def RTLData():
                         d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
                         d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
                         d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
-                #Clean up dictionary
                     try:
                         CleanUpAirplaneDict = AirplaneDict
                         for key, value in CleanUpAirplaneDict.items():
