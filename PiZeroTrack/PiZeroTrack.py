@@ -69,7 +69,7 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
-                print(output)
+                print(ParseOutput)
                 print("----")
                 if output.startswith("Hex"):
                     continue
