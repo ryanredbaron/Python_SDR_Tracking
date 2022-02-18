@@ -84,15 +84,18 @@ def RTLData():
                     
                 if PacketReady == 1:
                     for SingleItems in CreatedList:
-                        if "ICAO" in SingleItems:
-                            print(SingleItems)
-                        if "Speed" in SingleItems:
-                            print(SingleItems)
-                        if "Lat" in SingleItems:
-                            print(SingleItems)
-                        if "Long" in SingleItems:
-                            print(SingleItems)
-                    print("-------------")
+                            for SingleItem in SingleItems:
+                            if "ICAO" in SingleItems:
+                                print(SingleItems)
+                            if "speed" in SingleItems:
+                                print(SingleItems)
+                            if "lat" in SingleItems:
+                                print(SingleItems)
+                            if "long" in SingleItems:
+                                print(SingleItems)
+                    print("------")
+                    print(SingleItems)
+                    print("----------------")
                     CreatedList = []
                 else:
                     PacketReady = 0
