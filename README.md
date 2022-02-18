@@ -170,3 +170,13 @@ cd dump1090
 ./dump1090 --interactive --net
 ```
 
+Stupid fixes that should be patched
+```
+$ git fetch --all
+Fetching origin
+
+$ git reset --hard 455896e
+HEAD is now at 455896e Fix broken 32-bit x86 test that broke builds on non-x86
+
+$ make DUMP1090_VERSION=$(git describe --tags | sed 's/-.*//')
+```
