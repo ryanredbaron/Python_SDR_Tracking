@@ -126,21 +126,6 @@ sudo reboot
 ```
 
 
-Test 
-```
-rtl_test
-```
-
-
-Install Dump1090
-```
-cd Desktop
-sudo git clone https://github.com/flightaware/dump1090
-cd dump1090
-sudo make
-```
-
-
 Blacklist so OS doesn't take control
 ```
 cd /etc/modprobe.d
@@ -156,8 +141,24 @@ blacklist rtl2830
 ```
 
 
+Test 
+```
+rtl_test
+```
+
+
+Install Dump1090
+```
+cd Desktop
+sudo git clone https://github.com/flightaware/dump1090
+cd dump1090
+sudo make
+```
+
+
 Reboot
 ```
+sudo apt-get install librtlsdr0
 sudo reboot
 ```
 
