@@ -67,13 +67,11 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            ParseOutput = list(filter(None, output.split(" ")))
+            LineSplit = list(filter(None, output.split(" ")))
             if output:
-                if output.startswith("Hex"):
-                    continue
-                if output.startswith("-----------------------------------"):
-                    continue
-                if len(ParseOutput) == 12 and ParseOutput[0] != "(INCLUDING" and ParseOutput[0] != "OF":
+                for EachLine in LineSplit:
+                    ParseOutput = list(EachLine.splitlines())
+                    print(ParseOutput)
                     SHex = ParseOutput[0]
                     SFlight = ParseOutput[3]
                     try:
@@ -87,7 +85,7 @@ def RTLData():
                                                     #0    1     2   3     4   5       6
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                     print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
-                   
+                       
                     for k, v in AirplaneDict.items():
                         DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                         DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
