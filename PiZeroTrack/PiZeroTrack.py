@@ -69,6 +69,8 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
+                print(ParseOutput)
+                print("-------------------------------------------------------")
                 DoNotPass = 0
                 try:
                     if ParseOutput[8] > -140 and ParseOutput[8] < -100:
