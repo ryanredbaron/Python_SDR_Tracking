@@ -73,7 +73,9 @@ def RTLData():
                     ParseOutput = list(EachLine.split(" "))
                     if ParseOutput[0] == "":
                         print(ParseOutput)
-                        print("---------------")
+                        print("----")
+                        print(len(ParseOutput))
+                        print("--------------------")
                         try:SHex = ParseOutput[0]
                         except:SHex = 0
                         try:SFlight = ParseOutput[3]
