@@ -8,7 +8,6 @@ Created on Sun Feb 13 15:40:43 2022
 import sys
 import subprocess
 import time
-import os
 import math
 
 from guizero import App, Drawing
@@ -65,10 +64,12 @@ def RTLData():
 
     Processing = True
     while Processing == True:
+        print(1)
         try:
             output = ""
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
+            print(2)
             if output:
                 if output.startswith("Hex"):
                     continue
@@ -126,10 +127,7 @@ def RTLData():
                         pass
                     Processing = False
         except KeyboardInterrupt:
-            print('Shutting Down')
-            process.kill()
-            process.terminate()
-            sys.exit(0)
+            pass
     
 
 d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
