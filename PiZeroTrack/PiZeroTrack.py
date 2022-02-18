@@ -76,7 +76,7 @@ def RTLData():
                 #print(data)
                 for d in data:
                     line = d.split("  ")
-                    if line != "" and len(line) > 0:
+                    if line != "" and len(line) > 22:
                         print(line)
                         print("----")
                         print(len(line))
