@@ -82,7 +82,7 @@ def RTLData():
                         try:SFlight = ParseOutput[1]
                         except:SFlight = 0
                         try:SAlt = int(ParseOutput[4])
-                        except:SAlt = 0     
+                        except:SAlt = 0
                         try:SSpd = int(ParseOutput[5])
                         except:SSpd = 0
                         try:SHdg = int(ParseOutput[6])
@@ -113,6 +113,7 @@ def RTLData():
                     d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
+                for k, v in AirplaneDict.items():
                     try:
                         CleanUpAirplaneDict = AirplaneDict
                         for key, value in CleanUpAirplaneDict.items():
