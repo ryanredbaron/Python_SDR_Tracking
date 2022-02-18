@@ -67,7 +67,7 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            ParseOutput = list(filter(None, output.split(" ")))
+            ParseOutput = list(filter(None, output.splitlines()))
             if output:
                 print(ParseOutput)
                 print("-------------------------------------------------------")
