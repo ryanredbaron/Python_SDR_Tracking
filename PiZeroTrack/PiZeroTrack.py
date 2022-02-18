@@ -70,7 +70,7 @@ def RTLData():
             output = ""
             output = (process.stdout.readline()).decode()
             if output:
-                data = output.split(",")
+                data = list(output.split("\n"))
                 print(data)
                 
                                   #0    1     2   3     4   5       6
