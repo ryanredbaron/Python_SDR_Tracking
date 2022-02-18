@@ -76,6 +76,7 @@ def RTLData():
                         SHex = 0
                         try:
                             SFlight = ParseOutput[1]
+                            AirplaneDict[SFlight] = ""
                         except:
                             SFlight = 0
                         try:
