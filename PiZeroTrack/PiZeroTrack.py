@@ -69,6 +69,8 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
+            ansi_escape3 = re.compile(r'\x1b[^m]*m')
+            output = ansi_escape3.sub('', output)
             if output:
                 data = output.split("\n")
                 #print(data)
