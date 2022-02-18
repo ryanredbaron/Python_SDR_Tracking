@@ -72,8 +72,8 @@ def RTLData():
                 DoNotPass = 0
                 try:
                     print(ParseOutput[8])
-                    if ParseOutput[8] < -140 or ParseOutput[8] > -100:
-                        sys.exit(1)
+                    if ParseOutput[8] > -140 or ParseOutput[8] < -100:
+                        pass
                 except:
                     DoNotPass = 1
                 if DoNotPass == 0:
