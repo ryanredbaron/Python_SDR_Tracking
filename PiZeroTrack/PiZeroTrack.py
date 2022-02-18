@@ -71,7 +71,7 @@ def RTLData():
             if output:
                 DoNotPass = 0
                 try:
-                    if ParseOutput[8] > -140 or ParseOutput[8] > -100 :
+                    if ParseOutput[8] > -100 or ParseOutput[8] > -140 :
                         pass
                 except:
                     DoNotPass = 1
