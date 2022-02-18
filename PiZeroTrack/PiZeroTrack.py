@@ -70,6 +70,8 @@ def RTLData():
             LineSplit = list(filter(None,output.splitlines()))
             if output:
                 for EachLine in LineSplit:
+                    print(EachLine)
+                    print("!!!!!!")
                     ParseOutput = list(EachLine.split(" "))
                     if ParseOutput[0] == "" and '/' not in ParseOutput[0] and '/' not in ParseOutput[1]:
                         print(ParseOutput)
@@ -77,10 +79,9 @@ def RTLData():
                         print(len(ParseOutput))
                         print("-----")
                         print(len(set(ParseOutput)))
-                        print("--------------------")
-                        try:SHex = ParseOutput[0]
-                        except:SHex = 0
-                        try:SFlight = ParseOutput[3]
+                        print("----------")
+                        SHex = 0
+                        try:SFlight = ParseOutput[1]
                         except:SFlight = 0
                         try:SAlt = int(ParseOutput[4])
                         except:SAlt = 0     
@@ -95,6 +96,7 @@ def RTLData():
                                                         #0    1     2   3     4   5       6
                         AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                         print({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                        print("-------------------------")
                         #print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
                        
                 for k, v in AirplaneDict.items():
