@@ -86,23 +86,22 @@ def RTLData():
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                     print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
                        
-                    for k, v in AirplaneDict.items():
-                        DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                        DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
-                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+                for k, v in AirplaneDict.items():
+                    DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
+                    DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
+                    d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
 
-                        SpeedRadius = v[2]/10
-                        Heading = ((v[3]-90)%360)*(0.017453)
-                        X1 = DisplayLat
-                        Y1 = DisplayLong
-                        X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
-                        Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
-                        d.line(X1,Y1,X2,Y2,color="orange",width=2)
-                        
-                        d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
-                        d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
-                        d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
-                #Clean up dictionary
+                    SpeedRadius = v[2]/10
+                    Heading = ((v[3]-90)%360)*(0.017453)
+                    X1 = DisplayLat
+                    Y1 = DisplayLong
+                    X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
+                    Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
+                    d.line(X1,Y1,X2,Y2,color="orange",width=2)
+                    
+                    d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
+                    d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
+                    d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
                     try:
                         CleanUpAirplaneDict = AirplaneDict
                         for key, value in CleanUpAirplaneDict.items():
