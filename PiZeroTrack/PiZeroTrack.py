@@ -73,6 +73,8 @@ def RTLData():
                 ParseOutput = list(EachLine.split(" "))
                 if output:
                     print(ParseOutput)
+                    print("!!!!!")
+                    print(len(ParseOutput))
                     print("-------------------------------------------------------")
                     DoNotPass = 0
                     try:
