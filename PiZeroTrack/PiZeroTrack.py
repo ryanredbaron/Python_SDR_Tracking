@@ -28,6 +28,7 @@ MilesPerLat = 0.0145054945054945
 SweepLocation = 0
 
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
+a.full_screen = True
 
 cmd = "dump1090/dump1090 --net --interactive"
 
