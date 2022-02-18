@@ -70,11 +70,13 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             if output:
                 data = output.split("\n")
-                print(data)
+                #print(data)
                 for d in data:
                     line = d.split(",")
-                    print(line)
-                print("---------------")
+                    if len(line) == 22:
+                        print(line)
+                        print("---------------")
+                
                                   #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
