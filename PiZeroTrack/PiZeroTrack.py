@@ -67,10 +67,10 @@ def RTLData():
         try:
             output = ""
             output = (process.stdout.readline()).decode()
-            LineSplit = list(filter(None, output.split(" ")))
+            LineSplit = list(filter(None, output.splitlines()))
             if output:
                 for EachLine in LineSplit:
-                    ParseOutput = list(EachLine.splitlines())
+                    ParseOutput = list(EachLine.split(" "))
                     print(ParseOutput)
                     try:SHex = ParseOutput[0]
                     except:SHex = 0
