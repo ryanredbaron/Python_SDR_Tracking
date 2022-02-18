@@ -30,6 +30,7 @@ SweepLocation = 0
 AirplaneDict = {}
 
 CreatedList = []
+PacketReady = 0
 
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
@@ -81,6 +82,7 @@ def RTLData():
                 else:
                     PacketReady = 1
                     CreatedList = []
+                    
                 if PacketReady == 1:
                     print(CreatedList)
                     print("-------------")
