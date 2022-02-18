@@ -136,6 +136,6 @@ def RTLData():
 
 d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
 d.bg = "black"
-d.repeat(100, RTLData)
+d.repeat(250, RTLData)
 
 a.display()
