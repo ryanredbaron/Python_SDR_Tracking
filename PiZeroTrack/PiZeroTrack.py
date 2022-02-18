@@ -69,7 +69,6 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             ParseOutput = list(filter(None, output.split(" ")))
             if output:
-                print("")
                 if len(ParseOutput) > 20:
                     try:
                         SHex = ParseOutput[0]
@@ -101,6 +100,7 @@ def RTLData():
                         SLong = 0
                                                     #0    1     2   3     4   5       6
                     AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+                    print(({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]}))
                    
                     for k, v in AirplaneDict.items():
                         DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
