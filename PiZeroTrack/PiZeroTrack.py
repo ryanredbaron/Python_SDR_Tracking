@@ -71,11 +71,7 @@ def RTLData():
             if output:
                 print(ParseOutput)
                 print("----")
-                if output.startswith("Hex"):
-                    continue
-                if output.startswith("-----------------------------------"):
-                    continue
-                if len(ParseOutput) == 12 and ParseOutput[0] != "(INCLUDING" and ParseOutput[0] != "OF":
+                if ParseOutput.count(',') == 6:
                     try:
                         SHex = ParseOutput[0]
                     except:
