@@ -76,9 +76,12 @@ def RTLData():
                         SHex = 0
                         try:
                             SFlight = ParseOutput[1]
-                            AirplaneDict[SFlight] = ""
+                            AirplaneDict[SFlight]
                         except:
-                            SFlight = 0
+                            try:
+                                AirplaneDict.update({SFlight : [""]})
+                            except:
+                                SFlight = 0
                         try:
                             SAlt = int(ParseOutput[4])
                             AirplaneDict[SFlight][4] = SAlt
