@@ -71,6 +71,9 @@ def RTLData():
             output = (process.stdout.readline()).decode()
             if output:
                 data = list(output.split("\n"))
+                print("-----")
+                print(data)
+                print("-----")
                 if data == "":
                     print("!!!!Break!!!!")
                 for List in data:
