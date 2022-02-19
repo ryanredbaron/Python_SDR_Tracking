@@ -92,24 +92,24 @@ def RTLData():
                             except:
                                 AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,int(time.time())]
                             break
-                    
+                        
                     if SelectedAircraft != "":
                         print(1)
                         for SingleItems in CreatedList:
                             if "Ident" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][0] = (SingleItems.split(":"))[1]
+                                try:AirplaneDict[SelectedAircraft][0] = (((SingleItems.split(":"))[1]).split(" "))[0]
                                 except:pass
                             if "altitude" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][1] = (SingleItems.split(":"))[1]
+                                try:AirplaneDict[SelectedAircraft][1] = (((SingleItems.split(":"))[1]).split(" "))[0]
                                 except:pass
                             if "speed" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][2] = (SingleItems.split(":"))[1]
+                                try:AirplaneDict[SelectedAircraft][2] = int((((SingleItems.split(":"))[1]).split(" "))[0])
                                 except:pass
                             if "lat" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][4] = (SingleItems.split(":"))[1]
+                                try:AirplaneDict[SelectedAircraft][4] = float((((SingleItems.split(":"))[1]).split(" "))[0])
                                 except:pass
                             if "long" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][5] = (SingleItems.split(":"))[1] 
+                                try:AirplaneDict[SelectedAircraft][5] = float((((SingleItems.split(":"))[1]).split(" "))[0])
                                 except:pass
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
