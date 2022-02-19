@@ -109,6 +109,7 @@ def RTLData():
                                 try:AirplaneDict[SelectedAircraft][4] = float((((SingleItems.split(":"))[1]).split(" "))[0])
                                 except:pass
                             if "long" in SingleItems:
+                                print((((SingleItems.split(":"))[1]).split(" "))[0])
                                 AirplaneDict[SelectedAircraft][5] = float((((SingleItems.split(":"))[1]).split(" "))[0])
                                 
                                                            #0       1   2   3      4    5      6
