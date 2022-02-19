@@ -87,10 +87,10 @@ def RTLData():
                         SelectedAircraft = ""
                         if "ICAO" in SingleItems:
                             SelectedAircraft = (SingleItems.split(":"))[1]
-                            try:
-                                AirplaneDict[SelectedAircraft][6] = int(time.time())
-                            except:
-                                AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,int(time.time())]
+                            #try:
+                            AirplaneDict[SelectedAircraft][6] = int(time.time())
+                            #except:
+                            AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,int(time.time())]
                     
                     if SelectedAircraft != "":
                         for SingleItems in CreatedList:
@@ -98,10 +98,10 @@ def RTLData():
                                 try:AirplaneDict[SelectedAircraft][0] =  (SingleItems.split(":"))[1]
                                 except:pass
                             if "altitude" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1] 
+                                try:AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1]
                                 except:pass
                             if "speed" in SingleItems:
-                                try:AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1] 
+                                try:AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1]
                                 except:pass
                             if "lat" in SingleItems:
                                 try:AirplaneDict[SelectedAircraft][4] =  (SingleItems.split(":"))[1]
