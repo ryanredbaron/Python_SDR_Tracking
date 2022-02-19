@@ -83,8 +83,9 @@ def RTLData():
                     PacketReady = 1
                     
                 if PacketReady == 1:
+                    SelectedAircraft = ""
                     for SingleItems in CreatedList:
-                        #print(SingleItems)
+                        print(SingleItems)
                         try:
                             InspectionItem = (SingleItems.split(":"))[1]
                         except:
@@ -95,23 +96,22 @@ def RTLData():
                                 AirplaneDict[SelectedAircraft][6] = int(time.time())
                             except:
                                 AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,0]
-                            if "Ident" in InspectionItem:
-                                AirplaneDict[SelectedAircraft][0] =  InspectionItem                        
-                            if "altitude" in InspectionItem:
-                                AirplaneDict[SelectedAircraft][1] =  InspectionItem                        
-                            if "speed" in InspectionItem:
-                                AirplaneDict[SelectedAircraft][2] =  InspectionItem 
-                            if "lat" in InspectionItem:
-                                AirplaneDict[SelectedAircraft][4] =  InspectionItem 
-                            if "long" in InspectionItem:
-                                AirplaneDict[SelectedAircraft][5] =  InspectionItem 
+                        if "Ident" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][0] =  InspectionItem                        
+                        if "altitude" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][1] =  InspectionItem                        
+                        if "speed" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][2] =  InspectionItem 
+                        if "lat" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][4] =  InspectionItem 
+                        if "long" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][5] =  InspectionItem 
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
 
                     CreatedList = []
                 else:
                     PacketReady = 0
-                
                 print(AirplaneDict)
                 print("----------------")
                                                                   #0    1     2   3     4   5       6
