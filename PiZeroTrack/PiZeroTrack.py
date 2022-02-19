@@ -84,24 +84,32 @@ def RTLData():
                     
                 if PacketReady == 1:
                     for SingleItems in CreatedList:
-                        if "ICAO" in SingleItems:
-                            print(SingleItems)
-                        if "Ident" in SingleItems:
-                            print(SingleItems)                            
-                        if "altitude" in SingleItems:
-                            print(SingleItems)                       
-                        if "speed" in SingleItems:
-                            print(SingleItems)
-                        if "lat" in SingleItems:
-                            print(SingleItems)
-                        if "long" in SingleItems:
-                            print(SingleItems)
+                        InspectionItem = (SingleItems.split(":"))[1]
+                        if "ICAO" in InspectionItem:
+                            SelectedAircraft = InspectionItem
+                            try:
+                                AirplaneDict[SelectedAircraft][6] = int(time.time())
+                            except:
+                                AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,0]
+                        if "Ident" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][0] =  InspectionItem                        
+                        if "altitude" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][1] =  InspectionItem                        
+                        if "speed" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][2] =  InspectionItem 
+                        if "lat" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][4] =  InspectionItem 
+                        if "long" in InspectionItem:
+                            AirplaneDict[SelectedAircraft][5] =  InspectionItem 
+                                                           #0       1   2   3      4    5      6
+                            #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
+                    print(AirplaneDict)
                     print("----------------")
                     CreatedList = []
                 else:
                     PacketReady = 0
                     
-                                  #0    1     2   3     4   5       6
+                                                                  #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
