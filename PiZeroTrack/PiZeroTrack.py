@@ -83,9 +83,7 @@ def RTLData():
                     PacketReady = 1
                     
                 if PacketReady == 1:
-                    SelectedAircraft = ""
                     for SingleItems in CreatedList:
-                        print(SingleItems)
                         try:
                             InspectionItem = (SingleItems.split(":"))[1]
                         except:
@@ -96,6 +94,11 @@ def RTLData():
                                 AirplaneDict[SelectedAircraft][6] = int(time.time())
                             except:
                                 AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,0]
+                    for SingleItems in CreatedList:
+                        try:
+                            InspectionItem = (SingleItems.split(":"))[1]
+                        except:
+                            continue
                         if "Ident" in InspectionItem:
                             AirplaneDict[SelectedAircraft][0] =  InspectionItem                        
                         if "altitude" in InspectionItem:
