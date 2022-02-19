@@ -84,6 +84,7 @@ def RTLData():
                     
                 if PacketReady == 1:
                     for SingleItems in CreatedList:
+                        print(SingleItems)
                         try:
                             InspectionItem = (SingleItems.split(":"))[1]
                         except:
