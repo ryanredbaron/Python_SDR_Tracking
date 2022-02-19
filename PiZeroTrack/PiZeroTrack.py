@@ -90,18 +90,18 @@ def RTLData():
                             try:
                                 AirplaneDict[SelectedAircraft][6] = int(time.time())
                             except:
-                                AirplaneDict[SelectedAircraft][1] = [0,0,0,0,0,0,0]
+                                AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,0]
                             
                     for SingleItems in CreatedList:
-                        if "Ident" in InspectionItem:
+                        if "Ident" in SingleItems:
                             AirplaneDict[SelectedAircraft][0] =  (SingleItems.split(":"))[1]                        
-                        if "altitude" in InspectionItem:
+                        if "altitude" in SingleItems:
                             AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1]                        
-                        if "speed" in InspectionItem:
+                        if "speed" in SingleItems:
                             AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1] 
-                        if "lat" in InspectionItem:
+                        if "lat" in SingleItems:
                             AirplaneDict[SelectedAircraft][4] =  (SingleItems.split(":"))[1]
-                        if "long" in InspectionItem:
+                        if "long" in SingleItems:
                             AirplaneDict[SelectedAircraft][5] =  (SingleItems.split(":"))[1] 
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
