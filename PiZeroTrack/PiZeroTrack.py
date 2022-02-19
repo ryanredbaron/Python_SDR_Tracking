@@ -84,31 +84,25 @@ def RTLData():
                     
                 if PacketReady == 1:
                     for SingleItems in CreatedList:
-                        try:
-                            InspectionItem = (SingleItems.split(":"))[1]
-                        except:
-                            continue
-                        if "ICAO" in InspectionItem:
-                            SelectedAircraft = InspectionItem
+                        SelectedAircraft = ""
+                        if "ICAO" in SingleItems:
+                            SelectedAircraft = (SingleItems.split(":"))[1]
                             try:
                                 AirplaneDict[SelectedAircraft][6] = int(time.time())
                             except:
-                                AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,0]
+                                AirplaneDict[SelectedAircraft][1] = [0,0,0,0,0,0,0]
+                            
                     for SingleItems in CreatedList:
-                        try:
-                            InspectionItem = (SingleItems.split(":"))[1]
-                        except:
-                            continue
                         if "Ident" in InspectionItem:
-                            AirplaneDict[SelectedAircraft][0] =  InspectionItem                        
+                            AirplaneDict[SelectedAircraft][0] =  (SingleItems.split(":"))[1]                        
                         if "altitude" in InspectionItem:
-                            AirplaneDict[SelectedAircraft][1] =  InspectionItem                        
+                            AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1]                        
                         if "speed" in InspectionItem:
-                            AirplaneDict[SelectedAircraft][2] =  InspectionItem 
+                            AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1] 
                         if "lat" in InspectionItem:
-                            AirplaneDict[SelectedAircraft][4] =  InspectionItem 
+                            AirplaneDict[SelectedAircraft][4] =  (SingleItems.split(":"))[1]
                         if "long" in InspectionItem:
-                            AirplaneDict[SelectedAircraft][5] =  InspectionItem 
+                            AirplaneDict[SelectedAircraft][5] =  (SingleItems.split(":"))[1] 
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
 
