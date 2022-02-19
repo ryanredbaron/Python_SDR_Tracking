@@ -91,6 +91,7 @@ def RTLData():
                                 AirplaneDict[SelectedAircraft][6] = int(time.time())
                             except:
                                 AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,int(time.time())]
+                            break
                     
                     if SelectedAircraft != "":
                         print(1)
