@@ -84,7 +84,10 @@ def RTLData():
                     
                 if PacketReady == 1:
                     for SingleItems in CreatedList:
-                        InspectionItem = (SingleItems.split(":"))[1]
+                        try:
+                            InspectionItem = (SingleItems.split(":"))[1]
+                        except:
+                            continue
                         if "ICAO" in InspectionItem:
                             SelectedAircraft = InspectionItem
                             try:
