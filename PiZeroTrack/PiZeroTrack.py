@@ -92,22 +92,23 @@ def RTLData():
                             except:
                                 AirplaneDict[SelectedAircraft] = [0,0,0,0,0,0,int(time.time())]
                     
-                    for SingleItems in CreatedList:
-                        if "Ident" in SingleItems:
-                            try:AirplaneDict[SelectedAircraft][0] =  (SingleItems.split(":"))[1]
-                            except:pass
-                        if "altitude" in SingleItems:
-                            try:AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1] 
-                            except:pass
-                        if "speed" in SingleItems:
-                            try:AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1] 
-                            except:pass
-                        if "lat" in SingleItems:
-                            try:AirplaneDict[SelectedAircraft][4] =  (SingleItems.split(":"))[1]
-                            except:pass
-                        if "long" in SingleItems:
-                            try:AirplaneDict[SelectedAircraft][5] =  (SingleItems.split(":"))[1] 
-                            except:pass
+                    if SelectedAircraft != "":
+                        for SingleItems in CreatedList:
+                            if "Ident" in SingleItems:
+                                try:AirplaneDict[SelectedAircraft][0] =  (SingleItems.split(":"))[1]
+                                except:pass
+                            if "altitude" in SingleItems:
+                                try:AirplaneDict[SelectedAircraft][1] =  (SingleItems.split(":"))[1] 
+                                except:pass
+                            if "speed" in SingleItems:
+                                try:AirplaneDict[SelectedAircraft][2] =  (SingleItems.split(":"))[1] 
+                                except:pass
+                            if "lat" in SingleItems:
+                                try:AirplaneDict[SelectedAircraft][4] =  (SingleItems.split(":"))[1]
+                                except:pass
+                            if "long" in SingleItems:
+                                try:AirplaneDict[SelectedAircraft][5] =  (SingleItems.split(":"))[1] 
+                                except:pass
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
 
