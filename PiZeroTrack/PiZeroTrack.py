@@ -86,6 +86,10 @@ def RTLData():
                     for SingleItems in CreatedList:
                         if "ICAO" in SingleItems:
                             print(SingleItems)
+                        if "Ident" in SingleItems:
+                            print(SingleItems)                            
+                        if "altitude" in SingleItems:
+                            print(SingleItems)                       
                         if "speed" in SingleItems:
                             print(SingleItems)
                         if "lat" in SingleItems:
