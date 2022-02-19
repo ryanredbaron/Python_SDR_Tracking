@@ -107,12 +107,13 @@ def RTLData():
                             AirplaneDict[SelectedAircraft][5] =  InspectionItem 
                                                            #0       1   2   3      4    5      6
                             #AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})    
-                    print(AirplaneDict)
-                    print("----------------")
+
                     CreatedList = []
                 else:
                     PacketReady = 0
-                    
+                
+                print(AirplaneDict)
+                print("----------------")
                                                                   #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
