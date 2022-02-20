@@ -70,7 +70,7 @@ def RTLData():
     Processing = True
     while Processing == True:
         try:
-            output = ((process.stdout.readline()).decode())
+            output = ((process.stdout.readline()).decode()).strip()
             ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
             result = ansi_escape.sub('', str(output))
             print(result.splitlines())
