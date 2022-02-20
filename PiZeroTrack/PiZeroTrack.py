@@ -71,7 +71,9 @@ def RTLData():
     while Processing == True:
         try:
             output = ((process.stdout.readline()).decode()).splitlines()
-            print(output)
+            ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
+            result = ansi_escape.sub('', output)
+            print(result)
             print("--------------------")
             
             for k, v in AirplaneDict.items():
