@@ -94,7 +94,6 @@ def RTLData():
                             break
                         
                     if SelectedAircraft != "":
-                        print(1)
                         for SingleItems in CreatedList:
                             if "Ident" in SingleItems:
                                 try:AirplaneDict[SelectedAircraft][0] = (((SingleItems.split(":"))[1]).split(" "))[0]
@@ -118,8 +117,8 @@ def RTLData():
                     CreatedList = []
                 else:
                     PacketReady = 0
-                print(AirplaneDict)
-                print("----------------")
+                #print(AirplaneDict)
+                #print("----------------")
                                                                   #0    1     2   3     4   5       6
                                   #AirplaneDict.update({SFlight : [SHex,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
                 for k, v in AirplaneDict.items():
