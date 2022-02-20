@@ -35,7 +35,7 @@ a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "~/Desktop/dump1090/dump1090"
+cmd = "~/Desktop/dump1090/dump1090 --interactive"
 process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
 
 def RTLData():
