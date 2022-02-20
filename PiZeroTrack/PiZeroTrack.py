@@ -70,7 +70,7 @@ def RTLData():
     Processing = True
     while Processing == True:
         try:
-            output = ((process.stdout.readline()).decode()).sub(r'[^\w]', '', 'MagX\x00\x00\x00\x08\x01\x008\xe6\x7f')
+            output = (process.stdout.readline()).decode("utf-8")
             print(output.splitlines())
             print("--------------------")
             
