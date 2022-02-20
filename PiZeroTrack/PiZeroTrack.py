@@ -70,10 +70,8 @@ def RTLData():
     Processing = True
     while Processing == True:
         try:
-            output = ((process.stdout.readline()).decode()).strip()
-            ansi_escape = re.compile(r'(\x9B|\x1B\[)[0-?]*[ -/]*[@-~]')
-            result = ansi_escape.sub('', str(output))
-            print(result.splitlines())
+            output = ((process.stdout.readline()).decode()).sub(r'[^\w]', '', 'MagX\x00\x00\x00\x08\x01\x008\xe6\x7f')
+            print(output.splitlines())
             print("--------------------")
             
             for k, v in AirplaneDict.items():
