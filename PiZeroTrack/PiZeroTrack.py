@@ -147,7 +147,7 @@ try:
     
     d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
     d.bg = "black"
-    d.repeat(1000, RTLData)
+    d.repeat(250, RTLData)
     
     a.display()
 
