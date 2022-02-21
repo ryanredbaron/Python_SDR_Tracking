@@ -140,26 +140,20 @@ try:
                 #                     k     v   0      1    2   3     4     5   
                 AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
             JsonFile.close()
-            if CurrentLat != gpsd.fix.latitude:
-                CurrentLat = d.text(0,0,"Lat FIX",size=18,color="red")
             try:
                 if math.isnan(gpsd.fix.latitude) or gpsd.fix.latitude == 0:
                     CurrentLat = BackupLat
                 else:
                     CurrentLat = gpsd.fix.latitude
             except:
-                pass           
-            if CurrentLat != gpsd.fix.longitude:
-                CurrentLat = d.text(0,20,"Long FIX",size=18,color="red")
+                pass
             try:
                 if math.isnan(gpsd.fix.longitude) or gpsd.fix.longitude == 0:
                     CurrentLong = BackupLong
                 else:
                     CurrentLong = gpsd.fix.longitude
             except:
-                pass     
-            print(gpsd.fix.longitude)
-            print("------")
+                pass
             for k, v in AirplaneDict.items():
                 if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
