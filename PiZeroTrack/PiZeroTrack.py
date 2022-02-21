@@ -39,37 +39,37 @@ cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json ~/Desktop/"
 JSONlocation = "/home/pi/Desktop/aircraft.json"
 process = subprocess.run(cmd, shell=True)
 
-def RTLData():
-    global AirplaneDict
-    global process
-    global SweepLocation
-    global d
+try:
+    def RTLData():
+        global AirplaneDict
+        global process
+        global SweepLocation
+        global d
+        
+        d.clear()
+        d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
+        d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
+        SweepLocation = SweepLocation + 1
+        if SweepLocation >> 360:
+            SweepLocation = 0
+        SweepX = (ScreenWidth/2)+(640)*(math.cos(math.radians(SweepLocation)))
+        SweepY = (ScreenHeight/2)+(640)*(math.sin(math.radians(SweepLocation)))
+        d.line(ScreenWidth/2,ScreenHeight/2,SweepX,SweepY,color="green")
+        RadarRing = 1
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        RadarRing = 5
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        RadarRing = 10
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        RadarRing = 15
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        RadarRing = 20
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        RadarRing = 25
+        d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
     
-    d.clear()
-    d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
-    d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
-    SweepLocation = SweepLocation + 1
-    if SweepLocation >> 360:
-        SweepLocation = 0
-    SweepX = (ScreenWidth/2)+(640)*(math.cos(math.radians(SweepLocation)))
-    SweepY = (ScreenHeight/2)+(640)*(math.sin(math.radians(SweepLocation)))
-    d.line(ScreenWidth/2,ScreenHeight/2,SweepX,SweepY,color="green")
-    RadarRing = 1
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    RadarRing = 5
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    RadarRing = 10
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    RadarRing = 15
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    RadarRing = 20
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    RadarRing = 25
-    d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-
-    Processing = True
-    while Processing == True:
-        try:
+        Processing = True
+        while Processing == True:
             f = open(JSONlocation)
             data = json.load(f)
             for i in data['aircraft']:
@@ -80,7 +80,7 @@ def RTLData():
                 DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                 DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
                 d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
-
+    
                 SpeedRadius = v[2]/10
                 Heading = ((v[3]-90)%360)*(0.017453)
                 X1 = DisplayLat
@@ -100,16 +100,16 @@ def RTLData():
             except:
                 pass
                 Processing = False
-        except KeyboardInterrupt:
-            print('Shutting Down')
-            process.kill()
-            process.terminate()
-            os.system("taskkill /f /im  dump1090.exe")
-            sys.exit(0)
+        
     
-
-d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
-d.bg = "black"
-d.repeat(250, RTLData)
-
-a.display()
+    d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
+    d.bg = "black"
+    d.repeat(250, RTLData)
+    
+    a.display()
+except KeyboardInterrupt:
+    print('Shutting Down')
+    process.kill()
+    process.terminate()
+    os.system("taskkill /f /im  dump1090.exe")
+    sys.exit(0)
