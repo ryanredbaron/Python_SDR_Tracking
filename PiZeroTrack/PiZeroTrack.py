@@ -138,8 +138,7 @@ try:
                         AirplaneDict.pop(key)
             except:
                 pass
-                Processing = False
-            time.sleep(1)
+            Processing = False
         
     
     d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
