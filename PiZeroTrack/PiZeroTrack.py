@@ -119,25 +119,26 @@ try:
                 print(k)
                 print(v)
                 print("---------")
-                DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
-                d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
-    
-                SpeedRadius = v[2]/10
-                Heading = ((v[3]-90)%360)*(0.017453)
-                X1 = DisplayLat
-                Y1 = DisplayLong
-                X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
-                Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
-                d.line(X1,Y1,X2,Y2,color="orange",width=2)
-                
-                if v[0] == '':
-                    FlightName = k
-                else:
-                    FlightName = v[0]
-                d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
-                d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
-                d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
+                if k and CurrentLong != 0 and CurrentLat != 0:
+                    DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
+                    DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
+                    d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+        
+                    SpeedRadius = v[2]/10
+                    Heading = ((v[3]-90)%360)*(0.017453)
+                    X1 = DisplayLat
+                    Y1 = DisplayLong
+                    X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
+                    Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
+                    d.line(X1,Y1,X2,Y2,color="orange",width=2)
+                    
+                    if v[0] == '':
+                        FlightName = k
+                    else:
+                        FlightName = v[0]
+                    d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
+                    d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
+                    d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
             try:
                 CleanUpAirplaneDict = AirplaneDict
                 for key, value in CleanUpAirplaneDict.items():
