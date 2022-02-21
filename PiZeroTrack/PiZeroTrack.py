@@ -68,12 +68,32 @@ try:
         
         Processing = True
         while Processing == True:
-            f = open(JSONlocation)
-            data = json.load(f)
-            for i in data['aircraft']:
-                print(i)
-                print("------")
-            f.close()
+            JsonFile = open(JSONlocation)
+            JSONLoad = json.load(JsonFile)
+            for SingleAircraft in JSONLoad['aircraft']:
+                SHex = ""
+                SFlight = ""
+                SAlt = 0
+                SSpd = 0
+                SHdg = 0
+                SLat = 0.0
+                SLong = 0.0
+                if SingleAircraft['hex']:
+                    SHex = SingleAircraft['hex']
+                if SingleAircraft['hex']:
+                    SFlight = SingleAircraft['flight']
+                if SingleAircraft['']:
+                    SAlt = SingleAircraft['']
+                if SingleAircraft['']:
+                    SSpd = int(SingleAircraft[''])
+                if SingleAircraft['']:
+                    SHdg = int(SingleAircraft[''])
+                if SingleAircraft['']:
+                    SLat = float(SingleAircraft[''])
+                if SingleAircraft['']:
+                    SLong = float(SingleAircraft[''])
+                AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
+            JsonFile.close()
                         
             for k, v in AirplaneDict.items():
                 DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
