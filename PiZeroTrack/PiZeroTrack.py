@@ -78,22 +78,41 @@ try:
                 SHdg = 0
                 SLat = 0.0
                 SLong = 0.0
-                if SingleAircraft['hex']:
+                try: 
                     SHex = SingleAircraft['hex']
+                except:
+                    pass
+                
                 try:
                     SFlight = SingleAircraft['flight']
                 except:
                     pass
-                if SingleAircraft['alt_baro']:
-                    SAlt = SingleAircraft['alt_baro']
-                if SingleAircraft['gs']:
+                
+                try: 
+                    SAlt = int(SingleAircraft['alt_baro'])
+                except:
+                    pass
+                
+                try:
                     SSpd = int(SingleAircraft['gs'])
-                if SingleAircraft['track']:
+                except:
+                    pass
+                
+                try:
                     SHdg = int(SingleAircraft['track'])
-                if SingleAircraft['lat']:
+                except:
+                    pass
+                
+                try:
                     SLat = float(SingleAircraft['lat'])
-                if SingleAircraft['lon']:
+                except:
+                    pass
+                
+                try:
                     SLong = float(SingleAircraft['lon'])
+                except:
+                    pass
+                
                 AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
             JsonFile.close()
                         
