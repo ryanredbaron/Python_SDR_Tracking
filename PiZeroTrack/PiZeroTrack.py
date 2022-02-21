@@ -37,7 +37,7 @@ a.full_screen = True
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
 cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json ~/Desktop/"
 JSONlocation = "/home/pi/Desktop/aircraft.json"
-process = subprocess.run(cmd, shell=True)
+process = subprocess.run(cmd)
 
 try:
     def RTLData():
@@ -67,7 +67,7 @@ try:
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
         RadarRing = 25
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
-    
+        
         Processing = True
         while Processing == True:
             f = open(JSONlocation)
@@ -107,6 +107,7 @@ try:
     d.repeat(250, RTLData)
     
     a.display()
+
 except KeyboardInterrupt:
     print('Shutting Down')
     process.kill()
