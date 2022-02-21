@@ -10,7 +10,7 @@ import subprocess
 import time
 import os
 import math
-import re
+import json
 
 from guizero import App, Drawing
 
@@ -35,15 +35,15 @@ a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "~/Desktop/dump1090/dump1090 --interactive"
-process = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+cmd = "~/Desktop/dump1090/dump1090 --write-json ~/Desktop/"
+JSONlocation = "~/Desktop/aircraft.json"
+process = subprocess.run(cmd, shell=True)
 
 def RTLData():
     global AirplaneDict
     global process
     global SweepLocation
     global d
-    global CreatedList
     
     d.clear()
     d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
@@ -70,10 +70,12 @@ def RTLData():
     Processing = True
     while Processing == True:
         try:
-            output = (process.stdout.readline()).decode("utf-8")
-            print(output.splitlines())
-            print("--------------------")
-            
+            f = open('JSONlocation')
+            data = json.load(f)
+            for i in data['aircraft']:
+                print(i)
+            f.close()
+                        
             for k, v in AirplaneDict.items():
                 DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                 DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
