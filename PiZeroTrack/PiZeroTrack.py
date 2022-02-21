@@ -35,8 +35,8 @@ a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "~/Desktop/dump1090/dump1090 --write-json ~/Desktop/"
-JSONlocation = "~/Desktop/aircraft.json"
+cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json ~/Desktop/"
+JSONlocation = "/home/pi/Desktop/aircraft.json"
 process = subprocess.run(cmd, shell=True)
 
 def RTLData():
@@ -70,7 +70,7 @@ def RTLData():
     Processing = True
     while Processing == True:
         try:
-            f = open('JSONlocation')
+            f = open(JSONlocation)
             data = json.load(f)
             for i in data['aircraft']:
                 print(i)
