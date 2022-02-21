@@ -111,12 +111,12 @@ try:
                     SLong = float(SingleAircraft['lon'])
                 except:
                     pass
-                
+                #                     k     v   0      1    2   3     4     5   
                 AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
             JsonFile.close()
                         
             for k, v in AirplaneDict.items():
-                if k and CurrentLong != 0 and CurrentLat != 0:
+                if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                     DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
                     d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
