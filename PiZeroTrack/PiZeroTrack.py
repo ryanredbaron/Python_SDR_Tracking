@@ -14,8 +14,32 @@ import json
 
 from guizero import App, Drawing
 
+from gps import *
+import threading
+
+gpsd = None
+
+class GpsPoller(threading.Thread):
+  def __init__(self):
+    threading.Thread.__init__(self)
+    global gpsd
+    gpsd = gps(mode=WATCH_ENABLE)
+    self.current_value = None
+    self.running = True
+ 
+  def run(self):
+    global gpsd
+    while gpsp.running:
+      gpsd.next()
+
+gpsp = GpsPoller()
+gpsp.start()
+
 CurrentLat = 33.792641
 CurrentLong = -118.115471
+
+BackupLat = CurrentLat
+BackupLong = CurrentLong
 
 ScreenHeight = 640
 ScreenWidth = 480
@@ -114,7 +138,21 @@ try:
                 #                     k     v   0      1    2   3     4     5   
                 AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
             JsonFile.close()
-                        
+            
+            try:
+                if gpsd.fix.latitude != 0:
+                    CurrentLat = gpsd.fix.latitude
+                else:
+                    CurrentLat = BackupLat
+            except:
+                pass
+            try:
+                if gpsd.fix.longitude != 0:
+                    CurrentLong = gpsd.fix.longitude
+                else:
+                    CurrentLong = BackupLong
+            except:
+                pass           
             for k, v in AirplaneDict.items():
                 if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
