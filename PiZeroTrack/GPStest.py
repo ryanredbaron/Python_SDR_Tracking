@@ -28,5 +28,5 @@ gpsp = GpsPoller()
 gpsp.start()
 
 while True:
-    print(gpsd.fix.speed)
+    print(gpsd.get_current())
     time.sleep(1)
