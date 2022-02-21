@@ -9,6 +9,8 @@ from gps import *
 import threading
 import time
 
+gpsd = None
+
 class GpsPoller(threading.Thread):
   def __init__(self):
     threading.Thread.__init__(self)
@@ -26,6 +28,6 @@ gpsp = GpsPoller()
 gpsp.start()
 
 while True:
-	print(gpsd.fix.Latitude)
-	print(gpsd.fix.Longitude)
+	print(gpsd.fix)
+	print(gpsd.fix)
 	time.sleep(1)
