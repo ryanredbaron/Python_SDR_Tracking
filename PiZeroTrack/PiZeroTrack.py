@@ -34,15 +34,13 @@ CreatedList = []
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
-os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json /home/pi/Desktop"
-JSONlocation = "/home/pi/Desktop/aircraft.json"
-process = subprocess.run(cmd)
+cmd = "/home/pi/Desktop/dump1090/dump1090 --quiet --write-json /home/pi/Desktop/JSONfolder"
+JSONlocation = "/home/pi/Desktop/JSONfolder/aircraft.json"
+process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
 try:
     def RTLData():
         global AirplaneDict
-        global process
         global SweepLocation
         global d
         
@@ -74,6 +72,7 @@ try:
             data = json.load(f)
             for i in data['aircraft']:
                 print(i)
+                print("------")
             f.close()
                         
             for k, v in AirplaneDict.items():
@@ -112,5 +111,5 @@ except KeyboardInterrupt:
     print('Shutting Down')
     process.kill()
     process.terminate()
-    os.system("taskkill /f /im  dump1090.exe")
+    os.system('pkill dump1090')
     sys.exit(0)
