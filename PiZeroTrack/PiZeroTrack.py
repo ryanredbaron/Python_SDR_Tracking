@@ -29,7 +29,6 @@ MilesPerLat = 0.0145054945054945
 SweepLocation = 0
 AirplaneDict = {}
 
-CreatedList = []
 
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
@@ -140,6 +139,7 @@ try:
             except:
                 pass
                 Processing = False
+            time.sleep(1)
         
     
     d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
