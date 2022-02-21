@@ -147,7 +147,7 @@ try:
                     d.text(0,0,"Lat FIX",size=18,color="red")
             except:
                 pass              
-
+            print(gpsd.fix.latitude)
             try:
                 if math.isnan(gpsd.fix.longitude) or gpsd.fix.longitude == 0:
                     CurrentLong = BackupLong
@@ -155,7 +155,9 @@ try:
                     CurrentLong = gpsd.fix.longitude
                     d.text(0,15,"Long FIX",size=18,color="red")
             except:
-                pass           
+                pass     
+            print(gpsd.fix.longitude)
+            print("------")
             for k, v in AirplaneDict.items():
                 if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
