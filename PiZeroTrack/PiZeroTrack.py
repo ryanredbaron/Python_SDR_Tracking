@@ -80,8 +80,10 @@ try:
                 SLong = 0.0
                 if SingleAircraft['hex']:
                     SHex = SingleAircraft['hex']
-                if SingleAircraft['flight']:
+                try:
                     SFlight = SingleAircraft['flight']
+                except:
+                    pass
                 if SingleAircraft['alt_baro']:
                     SAlt = SingleAircraft['alt_baro']
                 if SingleAircraft['gs']:
@@ -96,6 +98,10 @@ try:
             JsonFile.close()
                         
             for k, v in AirplaneDict.items():
+                print(k)
+                print("------")
+                print(v)
+                print("-------------")
                 DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                 DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
                 d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
