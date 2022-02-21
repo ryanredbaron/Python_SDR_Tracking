@@ -147,11 +147,11 @@ try:
             except:
                 pass
             try:
-                if gpsd.fix.longitude != 0:
-                    CurrentLong = gpsd.fix.longitude
-                    d.text(0,0,"GPS FIX",size=22,color="red")
-                else:
+                if math.isnan(gpsd.fix.longitude) or gpsd.fix.longitude == 0:
                     CurrentLong = BackupLong
+                else:
+                    CurrentLong = gpsd.fix.longitude
+                    d.text(0,0,"GPS FIX",size=18,color="red")
             except:
                 pass           
             for k, v in AirplaneDict.items():
