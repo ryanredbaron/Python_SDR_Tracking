@@ -148,15 +148,13 @@ cd dump1090
 
 Trouble Shooting
 ```
-DISPLAY=:0 python3 ~/Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py
-
 ~/Desktop/dump1090/dump1090 --net --interactive
 
 cd ~
 cd ~/Desktop/
 sudo git clone https://github.com/ryanredbaron/Python_SDR_Tracking
 
-cd ~/Desktop/Python_SDR_Tracking/;sudo git pull --all
+cd ~/Desktop/Python_SDR_Tracking/;sudo git pull --all;DISPLAY=:0 python3 ~/Desktop/Python_SDR_Tracking/PiZeroTrack/PiZeroTrack.py
 
 sudo killall python3
 ```
