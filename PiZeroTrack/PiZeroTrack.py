@@ -35,7 +35,7 @@ a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
 os.chdir("/home/pi/Desktop/Python_SDR_Tracking")
-cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json /home/pi/Desktop/"
+cmd = "/home/pi/Desktop/dump1090/dump1090 --write-json /home/pi/Desktop"
 JSONlocation = "/home/pi/Desktop/aircraft.json"
 process = subprocess.run(cmd)
 
