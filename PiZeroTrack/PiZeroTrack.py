@@ -140,18 +140,20 @@ try:
             JsonFile.close()
             
             try:
-                if gpsd.fix.latitude != 0:
-                    CurrentLat = gpsd.fix.latitude
-                else:
+                if math.isnan(gpsd.fix.latitude) or gpsd.fix.latitude == 0:
                     CurrentLat = BackupLat
+                else:
+                    CurrentLat = gpsd.fix.latitude
+                    d.text(0,0,"Lat FIX",size=18,color="red")
             except:
-                pass
+                pass              
+
             try:
                 if math.isnan(gpsd.fix.longitude) or gpsd.fix.longitude == 0:
                     CurrentLong = BackupLong
                 else:
                     CurrentLong = gpsd.fix.longitude
-                    d.text(0,0,"GPS FIX",size=18,color="red")
+                    d.text(0,15,"Long FIX",size=18,color="red")
             except:
                 pass           
             for k, v in AirplaneDict.items():
