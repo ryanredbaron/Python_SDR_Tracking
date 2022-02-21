@@ -46,7 +46,7 @@ try:
         d.clear()
         d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
         d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
-        SweepLocation = SweepLocation + 1
+        SweepLocation = SweepLocation + 5
         if SweepLocation >> 360:
             SweepLocation = 0
         SweepX = (ScreenWidth/2)+(640)*(math.cos(math.radians(SweepLocation)))
@@ -147,7 +147,7 @@ try:
     
     d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
     d.bg = "black"
-    d.repeat(250, RTLData)
+    d.repeat(500, RTLData)
     
     a.display()
 
