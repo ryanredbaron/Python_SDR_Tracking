@@ -66,6 +66,8 @@ try:
         global AirplaneDict
         global SweepLocation
         global d
+        global CurrentLat
+        global CurrentLong
         
         d.clear()
         d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
