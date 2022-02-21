@@ -70,8 +70,8 @@ try:
             JsonFile = open(JSONlocation)
             JSONLoad = json.load(JsonFile)
             for SingleAircraft in JSONLoad['aircraft']:
-                SHex = ""
-                SFlight = ""
+                SHex = ''
+                SFlight = ''
                 SAlt = 0
                 SSpd = 0
                 SHdg = 0
@@ -128,7 +128,11 @@ try:
                 Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
                 d.line(X1,Y1,X2,Y2,color="orange",width=2)
                 
-                d.text(DisplayLat-15,DisplayLong-25,k,size=8,color="white")
+                if v[0] == '':
+                    FlightName = k
+                else:
+                    FlightName = v[0]
+                d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
                 d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
                 d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
             try:
