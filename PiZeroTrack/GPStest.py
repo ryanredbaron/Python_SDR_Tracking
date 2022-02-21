@@ -28,5 +28,6 @@ gpsp = GpsPoller()
 gpsp.start()
 
 while True:
-    print(gpsd.get_current())
+    print(gpsd.fix.latitude)
+    print("--------------")
     time.sleep(1)
