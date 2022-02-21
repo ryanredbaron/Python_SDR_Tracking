@@ -149,6 +149,7 @@ try:
             try:
                 if gpsd.fix.longitude != 0:
                     CurrentLong = gpsd.fix.longitude
+                    d.text(0,0,"GPS FIX",size=22,color="red")
                 else:
                     CurrentLong = BackupLong
             except:
