@@ -29,5 +29,6 @@ gpsp.start()
 
 while True:
     print(gpsd.fix.latitude)
+    print(gpsd.fix.longitude)
     print("--------------")
     time.sleep(1)
