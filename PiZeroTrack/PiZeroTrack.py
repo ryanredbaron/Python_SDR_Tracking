@@ -96,8 +96,8 @@ try:
         SweepX = (ScreenWidth/2)+(640)*(math.cos(math.radians(SweepLocation)))
         SweepY = (ScreenHeight/2)+(640)*(math.sin(math.radians(SweepLocation)))
         d.text(ScreenWidth/2,0,"N",size=20,color="green")
-        d.text(ScreenWidth/2,ScreenHeight-30,"S",size=20,color="green")
-        d.text(ScreenWidth-30,ScreenHeight/2,"E",size=20,color="green")
+        d.text(ScreenWidth/2,ScreenHeight-22,"S",size=20,color="green")
+        d.text(ScreenWidth-22,ScreenHeight/2,"E",size=20,color="green")
         d.text(0,ScreenHeight/2,"W",size=20,color="green")
         d.line(ScreenWidth/2,ScreenHeight/2,SweepX,SweepY,color="green")
         RadarRing = 1
