@@ -201,9 +201,9 @@ try:
                         else:
                             CoolPlane = 0
                     if CoolPlane == 1:
-                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
+                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, fill="", outline=4, outline_color="red")
                     else:
-                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, fill="", outline=2, outline_color="blue")
         
                     SpeedRadius = v[2]/8
                     Heading = ((v[3]-90)%360)*(0.017453)
