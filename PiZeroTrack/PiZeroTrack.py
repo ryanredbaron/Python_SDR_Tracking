@@ -76,7 +76,7 @@ CoolAirPlaneList = {
     'N140HP' : 'CHP',
     'STMPD' : 'Marine Core',
     'N66W' : 'Med Fly drop'
-    #,'SWA' : 'Test'
+    ,'SWA' : 'Test'
     }
 
 try:
