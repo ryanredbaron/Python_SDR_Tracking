@@ -61,6 +61,24 @@ cmd = "/home/pi/Desktop/dump1090/dump1090 --quiet --write-json /home/pi/Desktop/
 JSONlocation = "/home/pi/Desktop/JSONfolder/aircraft.json"
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+CoolAirPlaneList = {
+    'MF8' : 'Weird Military Aircraft',
+    'NASA' : 'NASA Airplane',
+    'OAE' : 'Government Contractor',
+    'N628TS' : 'Elon Musk',
+    'N758PB' : 'Jeff Bezos',
+    'N271DV' : 'Jeff Bezos',
+    'N744VG' : 'Virgin Launcher 747',
+    'N9187' : 'Catalina Delivery',
+    'N9680B' : 'Catalina Delivery',
+    'SLAM' : 'Military Transport?',
+    'KNIFE' : 'Military Helicopter',
+    'N140HP' : 'CHP',
+    'STMPD' : 'Marine Core',
+    'N66W' : 'Med Fly drop'
+    ,'SWA' : 'Test'
+    }
+
 try:
     def RTLData():
         global AirplaneDict
@@ -157,8 +175,22 @@ try:
             for k, v in AirplaneDict.items():
                 if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                    DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))                  
-                    d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+                    DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))
+                    if v[0] == '':
+                        FlightName = k
+                    else:
+                        FlightName = v[0]
+                    CoolPlane = 0
+                    for coolplane in CoolAirPlaneList:
+                        if k.startswith(coolplane):
+                            CoolPlane = 1
+                            continue
+                        else:
+                            CoolPlane = 0
+                    if CoolPlane == 1:
+                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
+                    else:
+                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
         
                     SpeedRadius = v[2]/10
                     Heading = ((v[3]-90)%360)*(0.017453)
@@ -168,10 +200,7 @@ try:
                     Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
                     d.line(X1,Y1,X2,Y2,color="orange",width=2)
                     
-                    if v[0] == '':
-                        FlightName = k
-                    else:
-                        FlightName = v[0]
+
                     d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
