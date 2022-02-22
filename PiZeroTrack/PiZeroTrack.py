@@ -186,36 +186,40 @@ try:
             except:
                 CurrentLong = 0
             for k, v in AirplaneDict.items():
-                if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0 and CurrentLong and CurrentLat:
-                    DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
-                    DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))
-                    if v[0] == '':
-                        FlightName = k
-                    else:
-                        FlightName = v[0]
-                    CoolPlane = 0
-                    for coolplane in CoolAirPlaneList or v[2] > 590:
-                        if FlightName.startswith(coolplane):
-                            CoolPlane = 1
-                            continue
+                try:
+                    if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0 and CurrentLong and CurrentLat:
+                        DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
+                        DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))
+                        if v[0] == '':
+                            FlightName = k
                         else:
-                            CoolPlane = 0
-                    if CoolPlane == 1:
-                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
-                    else:
-                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
-        
-                    SpeedRadius = v[2]/8
-                    Heading = ((v[3]-90)%360)*(0.017453)
-                    X1 = DisplayLat
-                    Y1 = DisplayLong
-                    X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
-                    Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
-                    d.line(X1,Y1,X2,Y2,color="orange",width=2)
-                    
-                    d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
-                    d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
-                    d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
+                            FlightName = v[0]
+                        CoolPlane = 0
+                        for coolplane in CoolAirPlaneList or v[2] > 590:
+                            if FlightName.startswith(coolplane):
+                                CoolPlane = 1
+                                continue
+                            else:
+                                CoolPlane = 0
+                        if CoolPlane == 1:
+                            d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
+                        else:
+                            d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
+            
+                        SpeedRadius = v[2]/8
+                        Heading = ((v[3]-90)%360)*(0.017453)
+                        X1 = DisplayLat
+                        Y1 = DisplayLong
+                        X2 = (SpeedRadius)*(math.cos(Heading))+DisplayLat
+                        Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
+                        d.line(X1,Y1,X2,Y2,color="orange",width=2)
+                        
+                        d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
+                        d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
+                        d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
+                except:
+                    print("error")
+                    pass
             try:
                 CleanUpAirplaneDict = AirplaneDict
                 for key, value in CleanUpAirplaneDict.items():
