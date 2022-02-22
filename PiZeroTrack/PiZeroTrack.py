@@ -177,16 +177,16 @@ try:
                 else:
                     CurrentLat = gpsd.fix.latitude
             except:
-                pass
+                CurrentLat = 0
             try:
                 if math.isnan(gpsd.fix.longitude) or gpsd.fix.longitude == 0:
                     CurrentLong = BackupLong
                 else:
                     CurrentLong = gpsd.fix.longitude
             except:
-                pass
+                CurrentLong = 0
             for k, v in AirplaneDict.items():
-                if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0:
+                if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0 and CurrentLong and CurrentLat:
                     DisplayLong = (ScreenHeight/2)+(ScreenWidth*(((CurrentLat - v[4])*69)/MapRadius))
                     DisplayLat = (ScreenWidth/2)-(ScreenHeight*(((CurrentLong - v[5])*69)/MapRadius))
                     if v[0] == '':
@@ -201,9 +201,9 @@ try:
                         else:
                             CoolPlane = 0
                     if CoolPlane == 1:
-                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, fill="", outline=4, outline_color="red")
+                        d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
                     else:
-                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, fill="", outline=2, outline_color="blue")
+                        d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
         
                     SpeedRadius = v[2]/8
                     Heading = ((v[3]-90)%360)*(0.017453)
