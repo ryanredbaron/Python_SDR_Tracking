@@ -181,7 +181,7 @@ try:
                     else:
                         FlightName = v[0]
                     CoolPlane = 0
-                    for coolplane in CoolAirPlaneList:
+                    for coolplane in CoolAirPlaneList or v[2] > 590:
                         if FlightName.startswith(coolplane):
                             CoolPlane = 1
                             continue
