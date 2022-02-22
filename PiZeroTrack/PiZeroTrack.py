@@ -105,14 +105,20 @@ try:
         d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 5
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 10
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 15
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 20
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 25
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
+        
         d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
         d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
         
