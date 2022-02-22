@@ -88,8 +88,6 @@ try:
         global CurrentLong
         
         d.clear()
-        d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
-        d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
         SweepLocation = SweepLocation + 1
         if SweepLocation >> 360:
             SweepLocation = 0
@@ -99,9 +97,12 @@ try:
         d.text(ScreenWidth/2,ScreenHeight-24,"S",size=20,color="green")
         d.text(ScreenWidth-20,ScreenHeight/2,"E",size=20,color="green")
         d.text(0,ScreenHeight/2,"W",size=20,color="green")
+        
         d.line(ScreenWidth/2,ScreenHeight/2,SweepX,SweepY,color="green")
+        
         RadarRing = 1
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.text((ScreenWidth/2)+((RadarRing*MapRadius)/2),ScreenHeight/2,RadarRing,size=20,color="green")
         RadarRing = 5
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
         RadarRing = 10
@@ -112,6 +113,8 @@ try:
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
         RadarRing = 25
         d.oval((ScreenWidth/2)-((RadarRing*MapRadius)/2), (ScreenHeight/2)-((RadarRing*MapRadius)/2), (ScreenWidth/2)+((RadarRing*MapRadius)/2), (ScreenHeight/2)+((RadarRing*MapRadius)/2), color=None, outline=2, outline_color="green")
+        d.line(ScreenWidth/2, 0, ScreenWidth/2, ScreenHeight,color="green")
+        d.line(0,ScreenHeight/2,ScreenWidth,ScreenHeight/2,color="green")
         
         Processing = True
         while Processing == True:
