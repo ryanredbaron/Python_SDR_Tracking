@@ -76,7 +76,7 @@ CoolAirPlaneList = {
     'N140HP' : 'CHP',
     'STMPD' : 'Marine Core',
     'N66W' : 'Med Fly drop'
-    ,'SWA' : 'Test'
+    #,'SWA' : 'Test'
     }
 
 try:
@@ -159,7 +159,7 @@ try:
                     SLong = float(SingleAircraft['lon'])
                 except:
                     pass
-                #                     k     v   0      1    2   3     4     5   
+                #                     k     v   0      1    2   3     4     5        6
                 AirplaneDict.update({SHex : [SFlight,SAlt,SSpd,SHdg,SLat,SLong,int(time.time())]})
             JsonFile.close()
             try:
@@ -196,7 +196,7 @@ try:
                     else:
                         d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
         
-                    SpeedRadius = v[2]/10
+                    SpeedRadius = v[2]/8
                     Heading = ((v[3]-90)%360)*(0.017453)
                     X1 = DisplayLat
                     Y1 = DisplayLong
@@ -204,7 +204,6 @@ try:
                     Y2 = (SpeedRadius)*(math.sin(Heading))+DisplayLong
                     d.line(X1,Y1,X2,Y2,color="orange",width=2)
                     
-
                     d.text(DisplayLat-15,DisplayLong-25,FlightName,size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+10,"Spd-"+str(v[2]),size=8,color="white")
                     d.text(DisplayLat-15,DisplayLong+20,"Alt-"+str(v[1]),size=8,color="white")
