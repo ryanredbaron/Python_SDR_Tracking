@@ -57,7 +57,7 @@ AirplaneDict = {}
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
-cmd = "/home/pi/Desktop/dump1090/dump1090 --net --write-json /home/pi/Desktop/JSONfolder"
+cmd = "/home/pi/Desktop/dump1090/dump1090 --quiet --write-json /home/pi/Desktop/JSONfolder"
 JSONlocation = "/home/pi/Desktop/JSONfolder/aircraft.json"
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
