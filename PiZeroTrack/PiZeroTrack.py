@@ -181,7 +181,7 @@ try:
                     CurrentLong = gpsd.fix.longitude
             except:
                 CurrentLong = 0
-            d.text(0,0,"N",len(AirplaneDict),color="red")
+            d.text(0,0,len(AirplaneDict),color="red")
             for k, v in AirplaneDict.items():
                 try:
                     if k and v[1] != 0 and  v[2] != 0 and  v[3] != 0 and  v[4] != 0 and  v[5] != 0 and CurrentLong and CurrentLat:
