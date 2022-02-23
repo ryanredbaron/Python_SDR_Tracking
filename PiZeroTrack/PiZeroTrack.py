@@ -53,7 +53,6 @@ MilesPerLat = 0.0145054945054945
 SweepLocation = 0
 AirplaneDict = {}
 
-
 a = App(title="PiFlight Track", height=ScreenHeight, width=ScreenWidth)
 a.full_screen = True
 
@@ -220,18 +219,9 @@ try:
                 except:
                     print("error")
                     pass
-            """try:
-                CleanUpAirplaneDict = AirplaneDict
-                for key, value in CleanUpAirplaneDict.items():
-                    if int(time.time()) - value[6] > 10:
-                        AirplaneDict.pop(key)
-            except:
-                pass
-            """
             AirplaneDict = {}
             Processing = False
         
-    
     d = Drawing(a, height=ScreenHeight, width=ScreenWidth)
     d.bg = "black"
     d.repeat(500, RTLData)
