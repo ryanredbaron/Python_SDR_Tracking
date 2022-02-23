@@ -220,13 +220,15 @@ try:
                 except:
                     print("error")
                     pass
-            try:
+            """try:
                 CleanUpAirplaneDict = AirplaneDict
                 for key, value in CleanUpAirplaneDict.items():
                     if int(time.time()) - value[6] > 10:
                         AirplaneDict.pop(key)
             except:
                 pass
+            """
+            AirplaneDict = {}
             Processing = False
         
     
