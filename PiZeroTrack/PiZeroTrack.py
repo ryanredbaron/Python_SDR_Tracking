@@ -204,7 +204,7 @@ try:
                             d.oval(DisplayLat-10, DisplayLong-10, DisplayLat+10, DisplayLong+10, color=None, outline=4, outline_color="red")
                         else:
                             d.oval(DisplayLat-5, DisplayLong-5, DisplayLat+5, DisplayLong+5, color=None, outline=2, outline_color="blue")
-            
+                            
                         SpeedRadius = v[2]/8
                         Heading = ((v[3]-90)%360)*(0.017453)
                         X1 = DisplayLat
