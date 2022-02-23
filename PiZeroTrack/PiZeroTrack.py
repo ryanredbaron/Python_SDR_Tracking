@@ -92,7 +92,7 @@ try:
             SweepLocation = 0
         SweepX = (ScreenWidth/2)+(640)*(math.cos(math.radians(SweepLocation)))
         SweepY = (ScreenHeight/2)+(640)*(math.sin(math.radians(SweepLocation)))
-        d.text(ScreenWidth/2-10,0,"N",size=25,color="green")
+        d.text(ScreenWidth/2-12,0,"N",size=25,color="green")
 
         d.line(ScreenWidth/2,ScreenHeight/2,SweepX,SweepY,color="green")
         
