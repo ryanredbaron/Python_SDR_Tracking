@@ -75,7 +75,7 @@ sudo apt-get install git-core -y
 sudo apt-get install git -y
 sudo apt-get install cmake -y
 sudo apt-get install libusb-1.0-0-dev -y
-sudo apt-get install build-essentia -y
+sudo apt-get install build-essential -y
 sudo apt-get install libncurses5-dev -y
 sudo apt-get update && sudo apt-get upgrade -y
 ```
