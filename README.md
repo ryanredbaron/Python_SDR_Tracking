@@ -78,6 +78,7 @@ sudo apt-get install libusb-1.0-0-dev -y
 sudo apt-get install build-essential -y
 sudo apt-get install libncurses5-dev -y
 sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install librtlsdr0 -y
 ```
 
 
@@ -133,7 +134,7 @@ sudo make
 
 Reboot
 ```
-sudo apt-get install librtlsdr0
+sudo mkdir /home/pi/Desktop/JSONfolder/
 sudo reboot
 ```
 
