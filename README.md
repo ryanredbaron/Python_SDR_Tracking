@@ -10,6 +10,29 @@ ADS-B Out works by broadcasting information about an aircraft's GPS location, al
 
 ![image](https://user-images.githubusercontent.com/5455778/153806799-e9d8c3b1-a86c-4352-b920-96504d2c04c1.png)
 
+```
+A- = Unspecified powered aircraft
+A1 = Light (< 15 500 lbs.)
+A2 = Small (15 500 to 75 000 lbs.)
+A3 = Large (75 000 to 300 000 lbs.)
+A4 = High Vortex Large(aircraft such as B-757)
+A5 = Heavy (> 300 000 lbs.)
+A6 = High Performance ( > 5 g acceleration and > 400kts)
+A7 = Rotorcraft
+B- = Unspecified unpowered aircraft or UAV or spacecraft
+B1 = Glider/sailplane
+B2 = Lighter-than-Air
+B3 = Parachutist/Skydiver
+B4 = Ultralight/hang-glider/paraglider
+B5 = Reserved
+B6 = Unmanned Aerial Vehicle
+B7 = Space/Trans-atmospheric vehicle
+C- = Unspecified ground installation or vehicle
+C1 = Surface Vehicle - Emergency Vehicle
+C2 = Surface Vehicle - Service Vehicle
+C3 = Fixed Ground or Tethered Obstruction
+```
+
 ```python
 from guizero import App, Drawing
 
